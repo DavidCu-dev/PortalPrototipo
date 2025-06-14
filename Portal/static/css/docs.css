@@ -1,0 +1,55 @@
+section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.tituloDoc h1 {
+    color: #012060;
+    font-weight: bold;
+}
+
+.documento {
+    border: 1px solid gray;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    font-size: 20px;
+    padding: 20px;
+}
+
+.infoNeg {
+    font-weight: bold;
+}
+
+.fecha {
+    font-weight: bold;
+}
+
+.botonG button {
+    color: white;
+    font-weight: bold;
+    background-color: #012060;
+    border: 2px solid black;
+    padding: 1.25em 2em;
+    margin: 10px;
+    border-radius: 100px;
+
+}
+
+.documentoAcostado {
+    border: 1px solid gray;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    font-size: 18px;
+    padding: 20px;
+    justify-content: center;
+}
+
+.colverde {
+    background-color: #417704;
+}
+
+.rotated-text {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);}

@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="alert alert-danger text-center" role="alert">
+        Porfavor leer el <a href="{% url 'Disclaimer' %}" class="alert-link">DISCLAIMER</a>, aqui se encuentra una breve explicacion de este proyecto.
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-5">
+            <div class="card signup-card shadow-lg">
+                <div class="card-header text-white" style="background-color: #0A1936;">
+                    <h2 class="text-center mb-0">Registro</h2>
+                </div>
+                <div class="card-body p-4 p-md-5">
+                    {% if error %}
+                        <div class="alert alert-danger">{{ error }}</div>
+                    {% endif %}
+                    
+                    <form action="/signup/" method="POST">
+                        {% csrf_token %}
+                        
+                        <div class="mb-3">
+                            <label for="id_username" class="form-label">Nombre de Usuario</label>
+                            {{ form.username }}
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="id_password1" class="form-label">Contraseña</label>
+                            {{ form.password1 }}
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="id_password2" class="form-label">Confirmar Contraseña</label>
+                            {{ form.password2 }}
+                        </div>
+                        
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary" style="background-color: #1F4693; border-color: #012060;">
+                                Registrarse
+                            </button>
+                        </div>
+                    </form>
+                    <!-- <div>
+                        *<small> Al dar click en Registrarse estas de acuerdo con las <a href="/politica_privacidad">Politicas de privacidad</a> y con los <a href="/terminos_y_condiciones">Términos y condiciones</a> de este sitio web</small>
+                    </div> -->
+                    <div class="text-center mt-3">
+                        <p class="small">
+                            ¿Ya tienes una cuenta? 
+                            <a href="/signin" class="text-decoration-none" style="color: #1F4693;">
+                                Iniciar Sesión
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    document.querySelector('form').addEventListener('submit', function(e) {
+        const username = document.querySelector('#id_username');
+        const password1 = document.querySelector('#id_password1');
+        const password2 = document.querySelector('#id_password2');
+        
+        if (username.value.trim() === '') {
+            e.preventDefault();
+            alert('Por favor, ingresa un nombre de usuario');
+            username.focus();
+            return;
+        }
+        
+        if (password1.value.trim() === '') {
+            e.preventDefault();
+            alert('Por favor, ingresa una contraseña');
+            password1.focus();
+            return;
+        }
+        
+        if (password2.value.trim() === '') {
+            e.preventDefault();
+            alert('Por favor, confirma tu contraseña');
+            password2.focus();
+            return;
+        }
+        
+        if (password1.value !== password2.value) {
+            e.preventDefault();
+            alert('Las contraseñas no coinciden');
+            password2.focus();
+        }
+    });
+
+    // Mejorar apariencia de los campos de formulario generados por Django
+    document.addEventListener('DOMContentLoaded', function() {
+        const formControls = document.querySelectorAll('input');
+        formControls.forEach(function(input) {
+            input.classList.add('form-control');
+            input.setAttribute('placeholder', input.labels[0].textContent);
+        });
+    });
+</script>
+{% endblock %}
