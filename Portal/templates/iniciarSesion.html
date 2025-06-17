@@ -1,0 +1,91 @@
+{% extends 'base.html' %} {% block content %}
+<div
+    class="container signin-container d-flex justify-content-center align-items-center">
+        <div class="row justify-content-center w-100">
+            <div class="col-md-6 col-lg-5">
+                <div class="card signin-card">
+                    <div class="card-header text-white" style="background-color: #0a1936">
+                <h2 class="text-center mb-0">Inicio de sesión</h2>
+                    </div>
+                    <div class="card-body">
+            {% if error %}
+            <div class="alert alert-danger">{{ error }}</div>
+            {% endif %}
+
+            <form action="/signin/" method="POST">
+            {% csrf_token %}
+
+            <div class="mb-3">
+                <label for="id_username" class="form-label">
+                    Nombre de Usuario
+                </label>
+                <input
+                    type="text"
+                    name="username"
+                    id="id_username"
+                    class="form-control"
+                    placeholder="Usuario"
+                    required
+                />
+            </div>
+
+            <div class="mb-3">
+                <label for="id_password" class="form-label">Contraseña</label>
+                <input
+                type="password"
+                name="password"
+                id="id_password"
+                class="form-control"
+                placeholder="Contraseña"
+                required
+                />
+            </div>
+
+            <div class="d-grid">
+                <button
+                type="submit"
+                class="btn btn-primary"
+                style="background-color: #1f4693; border-color: #012060"
+                >
+                Iniciar Sesión
+                </button>
+            </div>
+            </form>
+
+            <div class="text-center mt-4">
+            <p class="small">
+                ¿No tienes cuenta? <br />
+                <a
+                href="/signup"
+                class="text-decoration-none"
+                style="color: #1f4693">
+                Regístrate
+                </a>
+            </p>
+            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+{% endblock %} {% block scripts %}
+<script>
+  // Optional: Add some client-side validation
+  document.querySelector("form").addEventListener("submit", function (e) {
+    const username = document.getElementById("id_username");
+    const password = document.getElementById("id_password");
+
+    if (username.value.trim() === "") {
+      e.preventDefault();
+      alert("Por favor, ingresa tu nombre de usuario");
+      username.focus();
+    }
+
+    if (password.value.trim() === "") {
+      e.preventDefault();
+      alert("Por favor, ingresa tu contraseña");
+      password.focus();
+    }
+  });
+</script>
+{% endblock %}

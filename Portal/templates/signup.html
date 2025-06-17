@@ -33,7 +33,6 @@
                             <label for="id_password2" class="form-label">Confirmar Contraseña</label>
                             {{ form.password2 }}
                         </div>
-                        
                         <div class="d-grid">
                             <button type="submit" class="btn btn-primary" style="background-color: #1F4693; border-color: #012060;">
                                 Registrarse
@@ -46,7 +45,7 @@
                     <div class="text-center mt-3">
                         <p class="small">
                             ¿Ya tienes una cuenta? 
-                            <a href="/signin" class="text-decoration-none" style="color: #1F4693;">
+                            <a href="{% url 'iniciarSesion' %}" class="text-decoration-none" style="color: #1F4693;">
                                 Iniciar Sesión
                             </a>
                         </p>
