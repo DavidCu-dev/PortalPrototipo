@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit Data Usage{% endblock %}
+
+{% block content %}
+
+<h1> Datos de usuario</h1>
+{{error}}
+<form method="POST">
+    {% csrf_token %}
+    {{form}}
+    <button>
+        <span class="glyphicon glyphicon-ok"></span> Guardar
+    </button>
+</form>
+{% endblock %}

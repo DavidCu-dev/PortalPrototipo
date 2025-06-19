@@ -1,12 +1,12 @@
 /* Estilos generales */
 body {
-    background-color: #ffffff;
+    background-color: #6e6c6c;
 }
 
-.navbar {
+/* .navbar {
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    /* background-color: #0A1936 !important; */
-}
+    background-color: #0A1936 !important;
+} */
 
 .footer {
     background-color: #343a40 !important;
@@ -19,136 +19,14 @@ body {
 }
 
 .navbar-dark .navbar-nav .nav-link:hover {
-    color: #1b5cdf !important;
+    color: #cec17b !important;
     transition: color 0.3s ease;
 }
-.navbar-brand img {
-    max-height: 40px; 
-    margin-right: 10px;
-}
 
-
-/* Signin */
-/* Estilos específicos para la página de inicio de sesión */
-.signin-container {
-    
+.documentosGenerales-card{
+    border: 1px solid rgb(0, 0, 0);
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    padding: 20px;
     justify-content: center;
-    align-items: center;
-    min-height: calc(100vh - 120px); /* Ajusta según tu navbar y footer */
-}
-
-.signin-card {
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    border: none;
-}
-
-.signin-card .card-header {
-    background-color: #0A1936 !important;
-    color: white;
-    border-bottom: none;
-}
-
-.btn-primary {
-    background-color: #1F4693 !important;
-    border-color: #012060 !important;
-    transition: all 0.3s ease;
-}
-
-.btn-primary:hover {
-    background-color: #012060 !important;
-    transform: translateY(-2px);
-}
-
-/* Estilos de enlaces */
-.signin-card a {
-    color: #1F4693;
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-.signin-card a:hover {
-    color: #012060;
-    text-decoration: underline;
-}
-
-/* signup */
-/* Estilos específicos para la página de registro */
-.signup-card {
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    border: none;
-}
-
-.signup-card .card-header {
-    background-color: #0A1936 !important;
-    color: white;
-    border-bottom: none;
-}
-
-.signup-card .btn-primary {
-    background-color: #1F4693 !important;
-    border-color: #012060 !important;
-    transition: all 0.3s ease;
-}
-
-.signup-card .btn-primary:hover {
-    background-color: #012060 !important;
-    transform: translateY(-2px);
-}
-
-.signup-card a {
-    color: #1F4693;
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-.signup-card a:hover {
-    color: #012060;
-    text-decoration: underline;
-}
-
-/* datos generales */
-/* Estilos específicos para la página de Datos Generales */
-.datos-generales-card {
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    border: none;
-}
-
-.datos-generales-card .card-header {
-    background-color: #0A1936 !important;
-    color: white;
-    border-bottom: none;
-}
-
-.datos-generales-card .btn-primary {
-    background-color: #1F4693 !important;
-    border-color: #012060 !important;
-    transition: all 0.3s ease;
-}
-
-.datos-generales-card .btn-primary:hover {
-    background-color: #012060 !important;
-    transform: translateY(-2px);
-}
-
-.datos-generales-card .form-control {
-    border-color: #1F4693;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.datos-generales-card .form-control:focus {
-    border-color: #012060;
-    box-shadow: 0 0 0 0.2rem rgba(31, 70, 147, 0.25);
-}
-
-.datos-generales-card .is-invalid {
-    border-color: #dc3545;
-}
-
-.datos-generales-card .alert {
-    margin-bottom: 1.5rem;
-}
-
-.small-number-input {
-    width: 50px; /* Ajusta el tamaño según sea necesario */
-    max-width: 3ch; /* Limita el ancho a 3 caracteres */
 }

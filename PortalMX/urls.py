@@ -29,4 +29,8 @@ urlpatterns = [
     path('logout/', views.cerrarSesion, name='logout'),
     path('signin/', views.iniciarSesion, name='iniciarSesion'),
     path('datosUsuario/', views.datosUsuario, name='datosUsuario'),
+    path('actDatosUsuario/', views.actualizarDatosUsuario, name='actualizar'),
+
+    # documentos
+    path('declaratoria_propiedad/', views.declaratoriaPropiedad, name= 'declaratoriaPropiedad'),
 ]

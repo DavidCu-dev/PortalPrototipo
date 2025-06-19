@@ -1,30 +1,92 @@
 {% extends 'base.html' %} {% block content %} {% load static %}
 
 <div class="container mt-4">
-    <h1>Home</h1>
-
-    <ul class="nav nav-tabs" id="myTab" role="tablist">
-        <li class="nav-item" role="presentation">
-        <button class="nav-link active"
-            id="datos-tab"
-            data-bs-toggle="tab"
-            data-bs-target="#datos"
-            type="button"
-            role="tab">
-            Datos Generales
+  <h1>Home</h1>
+  {% if messages %}
+  {% for message in messages %}
+    <div class="alert alert-success" role="alert">
+      {{ message }}
+    </div>
+  {% endfor %}
+{% endif %}
+  <div class="accordion mt-4" id="accordionExample">
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button
+          class="accordion-button"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#collapseOne"
+          aria-expanded="true"
+          aria-controls="collapseOne"
+          style="background-color: #cec17b;"
+        >
+          Datos de Usuario
         </button>
-        </li>
-        <li class="nav-item" role="presentation">
-            <button class="nav-link"
-                id="Requisitos-tab"
-                data-bs-toggle="tab"
-                data-bs-target="#Requisitos"
-                type="button"
-                role="tab">
-                Requisitos
-            </button>
-        </li>
-    </ul>
+      </h2>
+      <div
+        id="collapseOne"
+        class="accordion-collapse collapse show"
+        data-bs-parent="#accordionExample"
+      >
+        <div class="accordion-body">
+            <ul>
+              <li>
+                <strong>Propietario: </strong>{{datosUsuario.propietario}}
+              </li>
+              <li>
+                <strong>Email: </strong>{{datosUsuario.email}}
+              </li>
+              <li>
+                <strong>RFC: </strong>{{datosUsuario.rfc}}
+              </li>
+              <li>
+                <strong>Telefono: </strong>{{datosUsuario.telefono}}
+              </li>
+              <li>
+                <strong>Razon Social: </strong>{{datosUsuario.razonSocial}}
+              </li>
+              <li>
+                <strong>Domicilio: </strong>{{datosUsuario.domicilio}}
+              </li>
+              <li>
+                <strong>Descripcion: </strong>{{datosUsuario.descripcion}}
+              </li>     
+            </ul>
+            <a href="{% url 'actualizar' %}">Actualizar Datos</a>
+        </div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button
+          class="accordion-button collapsed"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#collapseTwo"
+          aria-expanded="false"
+          aria-controls="collapseTwo"
+          style="background-color: #cec17b;"
+        >
+            Formularios 
+        </button>
+      </h2>
+      <div
+        id="collapseTwo"
+        class="accordion-collapse collapse"
+        data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+          <ul>
+            <li><a href="{% url 'declaratoriaPropiedad' %}" >Formulario 1</a></li>
+            <li><a href="http://" >Formulario 2</a></li>
+            <li><a href="http://" >Formulario 3</a></li>
+            <li><a href="http://" >Formulario 4</a></li>
+            <li><a href="http://" >Formulario 5</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 {% endblock %} {% block scripts %}
