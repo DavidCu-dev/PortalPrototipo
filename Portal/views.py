@@ -7,8 +7,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from django.db import IntegrityError
 from django.contrib.auth.decorators import login_required
-from .forms import formDatosUsuario
-from .models import datosUsuarioM
+from .forms import formDatosUsuario, formDeclaratoriaPropiedad
+from .models import datosUsuarioM, declaratoriaPropiedadModel
 # Create your views here.
 
 
@@ -36,7 +36,7 @@ def signup(request):
                     username=request.POST['username'], password=request.POST['password1'])
                 user.save()
                 login(request, user)
-                return redirect('home')
+                return redirect('datosUsuario')
             except IntegrityError:
                 return render(request, 'signup.html', {
                     'form': UserCreationForm,
@@ -106,4 +106,38 @@ def actualizarDatosUsuario(request):
             })
 
 def declaratoriaPropiedad(request):
-        return render(request, 'Documentos/declaratoriaPropiedad.html')
+    # Buscar si ya existen datos para este usuario
+    datos = declaratoriaPropiedadModel.objects.filter(user=request.user).first()
+
+    # si se envia un formulario
+    if request.method == 'POST':
+
+        # si existen datos:
+        if datos:
+            # actualiza el registro existente (instance=datos) arriba
+            form = formDeclaratoriaPropiedad(request.POST, instance=datos) 
+
+        # Si no existen datos, crea uno nuevo
+        else:
+            form = formDeclaratoriaPropiedad(request.POST)
+
+        # compruieba si el formulario cumple con las validaciones    
+        if form.is_valid():
+            # si es valido, guarda los datos
+            instancia = form.save(commit=False)
+            instancia.user = request.user  # Asegúrate de asignar el usuario si es necesario
+            instancia.save()
+            messages.success(request, 'Datos de Declaratoria de propiedad enviados correctamente')
+            return redirect('home')
+        
+    # si no exsiosten datos:
+    else:
+        # Si ya existen datos, muestra el formulario con los datos
+        if datos:
+            form = formDeclaratoriaPropiedad(instance=datos)
+        else:
+            form = formDeclaratoriaPropiedad()
+
+    return render(request, 'Documentos/declaratoriaPropiedad.html', {
+        'form': form
+    })

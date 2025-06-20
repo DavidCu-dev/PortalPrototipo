@@ -1,21 +1,39 @@
 {% extends 'base.html' %} {% block content %}
-<div class="container-fluid">
+<div class="container-fluid mb-4" >
     <div class="row justify-content-center">
-        <div class="documentosGenerales-card col-12 col-sm-10 col-md-6 col-lg-6 col-xl-8">
-            <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque aut ut
-            iure tempora libero, laborum alias sed enim vero quisquam tenetur
-            voluptates dolorum nihil nostrum dolor repudiandae similique, ipsa
-            possimus ducimus autem magni. Quae inventore delectus totam cupiditate
-            voluptas. Facilis tempore vero, deleniti nemo repellendus error
-            perspiciatis voluptas saepe aperiam nisi, explicabo sequi voluptatum
-            praesentium? Obcaecati officia, quibusdam aspernatur, quasi magnam
-            laudantium consectetur incidunt laboriosam ratione dolorem delectus quo!
-            Nam distinctio blanditiis quo et mollitia? Consequuntur neque
-            voluptatem, aspernatur obcaecati ab dicta id odit saepe molestiae
-            similique. Unde, ex sequi. Reiciendis facilis quasi aspernatur eligendi
-            aliquid quibusdam pariatur deserunt culpa?
-            </p>
+        <div class="documentosGenerales-card col-12 col-sm-10 col-md-6 col-lg-6 col-xl-8 ">
+            <form id="formularioDP" action="{% url 'declaratoriaPropiedad' %}" method="post">
+            {% csrf_token %}
+            <h4>Declaratoria de propiedad</h4>
+            <p>Dueño: {{form.dueñoDP}}</p>
+            <p>Representante legal de la empresa: {{form.empresaDP}} Lorem ipsum dolor sit, amet consectetur adipisicing elit. Con el RFC: {{form.rfcDP}} Neque aut ut iure tempora libero, laborum alias sed enim vero quisquam tenetur voluptates dolorum nihil nostrum dolor repudiandae similique, ipsa possimus ducimus autem magni. Quae inventore delectus totam cupiditate voluptas. Facilis tempore vero, deleniti nemo repellendus error perspiciatis voluptas saepe aperiam nisi, explicabo sequi voluptatum praesentium?. Con domicilio en: {{form.domicilioDP}} Obcaecati officia, quibusdam aspernatur, quasi magnam laudantium consectetur incidunt laboriosam ratione dolorem delectus quo! Nam distinctio blanditiis quo et mollitia? Consequuntur neque voluptatem, aspernatur obcaecati ab dicta id odit saepe molestiae similique. Unde, ex sequi. Reiciendis facilis quasi aspernatur eligendi aliquid quibusdam pariatur deserunt culpa?</p>
+            <strong>Información de contacto:</strong> 
+            <p>Correo electronico: {{form.emailDP}}</p>
+            <p>Teléfono: {{form.telefonoDP}}</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi reiciendis voluptate quod totam dolorem qui eaque deleniti accusantium dolor? Laboriosam obcaecati, perferendis quos excepturi aspernatur corrupti sint veniam quidem, dolorum hic saepe explicabo maiores at? Blanditiis nesciunt numquam rerum temporibus repellendus maiores sunt ullam quam qui earum! Exercitationem, culpa veniam beatae eveniet expedita reprehenderit, similique neque, aliquam dolor doloremque odit. Soluta, qui quod esse et inventore porro earum impedit. Nesciunt corrupti magni facere ipsa repellendus.</p>
+            <br>
+            <br>
+            <br>
+            <div class="text-center mb-4">
+                {{form.reprelegalDP}}
+                <br>
+                <strong>Representante legal</strong>
+            </form>
+        </div>
+            <div class="d-grid gap-4">
+                <div class="row text-center">
+                    <div class="col-12 col-md-6 ">
+                        <button type="submit" class="btn btn-primary w-100 " form="formularioDP" style="background-color: #3a3d44; border-color: #000000;">
+                            Guardar Datos
+                        </button>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <button type="submit" class="btn btn-primary w-100 " style="background-color: #3a3d44; border-color: #000000;">
+                            Borrar registro
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
