@@ -33,4 +33,7 @@ urlpatterns = [
 
     # documentos
     path('declaratoria_propiedad/', views.declaratoriaPropiedad, name= 'declaratoriaPropiedad'),
+
+    # generaciondoc
+    path('generarDeclaratoria/', views.wordDeclaratoriaPropiedad, name='generarDeclaratoria'),
 ]

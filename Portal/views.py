@@ -1,4 +1,5 @@
 import os
+from django.conf import settings
 from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
@@ -9,6 +10,9 @@ from django.db import IntegrityError
 from django.contrib.auth.decorators import login_required
 from .forms import formDatosUsuario, formDeclaratoriaPropiedad
 from .models import datosUsuarioM, declaratoriaPropiedadModel
+# generacion de documentos
+from io import BytesIO
+from docxtpl import DocxTemplate
 # Create your views here.
 
 
@@ -141,3 +145,32 @@ def declaratoriaPropiedad(request):
     return render(request, 'Documentos/declaratoriaPropiedad.html', {
         'form': form
     })
+
+def wordDeclaratoriaPropiedad(request):
+    user = request.user
+    datos=get_object_or_404(declaratoriaPropiedadModel, user=user)
+    template_path = os.path.join(settings.BASE_DIR, 'Portal', 'templates', 'templatesDocs', 'declaratoriaProp.docx')
+
+    # if not os.path.exists(template_path):
+    #     return HttpResponse("La plantilla no existe en la ruta especificada.")
+
+    context = {
+        'dueñoDP': datos.dueñoDP,
+        'empresaDP': datos.empresaDP,
+        'rfcDP': datos.rfcDP,
+        'domicilioDP': datos.domicilioDP,
+        'emailDP': datos.emailDP,
+        'telefonoDP': datos.telefonoDP,
+        'reprelegalDP': datos.reprelegalDP,
+    }
+
+    print(context)
+    doc = DocxTemplate(template_path)
+    doc.render(context)
+
+    buffer = BytesIO()  
+    doc.save(buffer)
+    buffer.seek(0)
+    response = HttpResponse(buffer,content_type='application/vnd.openxmlformats-officedocument.wordprocessingml.document')
+    response['Content-Disposition'] = f'attachment; filename="declaratoria_propiedad_{datos.user}.docx"'
+    return response

@@ -77,8 +77,18 @@
         data-bs-parent="#accordionExample">
         <div class="accordion-body">
           <ul>
-            <li><a href="{% url 'declaratoriaPropiedad' %}" >Formulario 1</a></li>
-            <li><a href="http://" >Formulario 2</a></li>
+            <li>
+              <a href="{% url 'declaratoriaPropiedad' %}" >Formulario 1</a>
+              <div>
+                <p>descargar word</p>
+                  <form action="{% url 'generarDeclaratoria' %}" method="get">
+                    <button class="btn btn-primary" type="submit">Descargar</button>
+                  </form>
+              </div>
+            </li>
+            <li>
+              <a href="http://" >Formulario 2</a>
+            </li>
             <li><a href="http://" >Formulario 3</a></li>
             <li><a href="http://" >Formulario 4</a></li>
             <li><a href="http://" >Formulario 5</a></li>
