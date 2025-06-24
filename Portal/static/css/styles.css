@@ -31,3 +31,21 @@ body {
     justify-content: center;
     border-radius: 25px;
 }
+
+.botongral{
+    background-color: #3a3d44; 
+    border-color: #000000;
+}
+
+.botongral:hover{
+    background-color: #cec17b;
+    border-color: white;
+    transition: background-color 0.2s ease, color 0.3s ease;
+}
+.botongral:active {
+    background-color: #a89e6f !important;
+    color: #fff !important;
+    border-color: #cec17b !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2) inset;
+    transition: background-color 0.1s, color 0.1s;
+}

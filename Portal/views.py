@@ -151,8 +151,8 @@ def wordDeclaratoriaPropiedad(request):
     datos=get_object_or_404(declaratoriaPropiedadModel, user=user)
     template_path = os.path.join(settings.BASE_DIR, 'Portal', 'templates', 'templatesDocs', 'declaratoriaProp.docx')
 
-    # if not os.path.exists(template_path):
-    #     return HttpResponse("La plantilla no existe en la ruta especificada.")
+    if not os.path.exists(template_path):
+        return HttpResponse("La plantilla no existe en la ruta especificada.")
 
     context = {
         'dueñoDP': datos.dueñoDP,

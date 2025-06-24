@@ -9,11 +9,11 @@
     </div>
   {% endfor %}
 {% endif %}
-  <div class="accordion mt-4" id="accordionExample">
+  <div class="accordion m-4" id="accordionExample">
     <div class="accordion-item">
       <h2 class="accordion-header">
         <button
-          class="accordion-button"
+          class="accordion-button card-header"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#collapseOne"
@@ -21,7 +21,7 @@
           aria-controls="collapseOne"
           style="background-color: #cec17b;"
         >
-          Datos de Usuario
+          <strong>Datos de Usuario</strong>
         </button>
       </h2>
       <div
@@ -30,30 +30,39 @@
         data-bs-parent="#accordionExample"
       >
         <div class="accordion-body">
-            <ul>
-              <li>
+          <div class="text-center">
+            <img src="static/images/profile.webp" alt="" class="rounded-circle" style="width: 200px; height: 200px;">
+          </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
                 <strong>Propietario: </strong>{{datosUsuario.propietario}}
               </li>
-              <li>
+              <li class="list-group-item">
                 <strong>Email: </strong>{{datosUsuario.email}}
               </li>
-              <li>
+              <li class="list-group-item">
                 <strong>RFC: </strong>{{datosUsuario.rfc}}
               </li>
-              <li>
+              <li class="list-group-item">
                 <strong>Telefono: </strong>{{datosUsuario.telefono}}
               </li>
-              <li>
+              <li class="list-group-item">
                 <strong>Razon Social: </strong>{{datosUsuario.razonSocial}}
               </li>
-              <li>
+              <li class="list-group-item">
                 <strong>Domicilio: </strong>{{datosUsuario.domicilio}}
               </li>
-              <li>
+              <li class="list-group-item">
                 <strong>Descripcion: </strong>{{datosUsuario.descripcion}}
+              </li>
+              <li class="list-group-item">
+                <a href="{% url 'actualizar' %}">
+                  <button class="btn btn-primary botongral">
+                    Actualizar Datos
+                  </button>
+                </a>
               </li>     
             </ul>
-            <a href="{% url 'actualizar' %}">Actualizar Datos</a>
         </div>
       </div>
     </div>
@@ -68,7 +77,7 @@
           aria-controls="collapseTwo"
           style="background-color: #cec17b;"
         >
-            Formularios 
+            <strong>Formularios</strong> 
         </button>
       </h2>
       <div
@@ -76,23 +85,64 @@
         class="accordion-collapse collapse"
         data-bs-parent="#accordionExample">
         <div class="accordion-body">
-          <ul>
-            <li>
-              <a href="{% url 'declaratoriaPropiedad' %}" >Formulario 1</a>
-              <div>
-                <p>descargar word</p>
-                  <form action="{% url 'generarDeclaratoria' %}" method="get">
-                    <button class="btn btn-primary" type="submit">Descargar</button>
-                  </form>
-              </div>
-            </li>
-            <li>
-              <a href="http://" >Formulario 2</a>
-            </li>
-            <li><a href="http://" >Formulario 3</a></li>
-            <li><a href="http://" >Formulario 4</a></li>
-            <li><a href="http://" >Formulario 5</a></li>
-          </ul>
+          <p class="card-text">
+            Estos formularios son un ejemplo de documentos que se pueden llenar y descargar en formato Word/Excel para cualquier uso. <br>
+            El texto que se muestra aquí y en todos los demas formularios son parte de Lorem Ipsum, un texto ficticio utilizado en la industria de la impresión y el diseño gráfico para llenar espacios y simular contenido real. <br>
+            El proposito de los formurarios es que el usuario pueda llenar los campos y se vean reflejados en una base de datos, y posteriormente se pueda descargar el documento en formato Word y Excel. <br>
+            Cabe mencionar que los formularios son un ejemplo y no tienen validez legal, ya que no estan firmados por un notario o autoridad competente.
+          </p>
+          <div class="card mb-3">
+              <h5 class="card-header">Declaratoria de Propiedad</h5>
+            <div class="card-body">
+              <p class="card-text">
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vel sit, natus ratione ut minima inventore fugiat id! Voluptates repellendus, repellat ratione nostrum veritatis ullam voluptas voluptate impedit quae enim harum iure cum hic? Saepe nulla facilis nihil soluta hic eligendi iste ducimus quaerat, optio, modi quod minima repudiandae magnam quas neque ullam vero quo quidem aut obcaecati beatae quae temporibus. Quas iure velit autem doloribus eos. Iure corporis eaque est, totam recusandae deleniti modi amet et fugit deserunt, iusto nihil enim dicta nulla aperiam, quisquam laboriosam impedit. Labore reiciendis omnis magnam eligendi atque doloribus, quaerat iure in, sint qui enim?
+              </p>
+              <div class="d-grid gap-4">
+                <div class="row text-center">
+                  <div class="col-12 col-md-6">
+                      <a href="{% url 'declaratoriaPropiedad' %}">
+                        <button class="btn btn-primary w-100 botongral">
+                            Llenar Formulario
+                        </button>
+                      </a>
+                    </div>
+                    <div class="col-12 col-md-6 ">
+                      <form action="{% url 'generarDeclaratoria' %}" method="get">
+                        <button class="btn btn-primary w-100 botongral" type="submit">
+                            Descargar
+                        </button>
+                      </form>
+                    </div>
+                </div>
+            </div>
+            </div>
+          </div>
+          <div class="card mb-3">
+              <h5 class="card-header">Declaratoria de Propiedad</h5>
+            <div class="card-body">
+              <p class="card-text">
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vel sit, natus ratione ut minima inventore fugiat id! Voluptates repellendus, repellat ratione nostrum veritatis ullam voluptas voluptate impedit quae enim harum iure cum hic? Saepe nulla facilis nihil soluta hic eligendi iste ducimus quaerat, optio, modi quod minima repudiandae magnam quas neque ullam vero quo quidem aut obcaecati beatae quae temporibus. Quas iure velit autem doloribus eos. Iure corporis eaque est, totam recusandae deleniti modi amet et fugit deserunt, iusto nihil enim dicta nulla aperiam, quisquam laboriosam impedit. Labore reiciendis omnis magnam eligendi atque doloribus, quaerat iure in, sint qui enim?
+              </p>
+              <div class="d-grid gap-4">
+                <div class="row text-center">
+                  <div class="col-12 col-md-6">
+                      <a href="{% url 'declaratoriaPropiedad' %}">
+                        <button class="btn btn-primary w-100 botongral">
+                            Llenar Formulario
+                        </button>
+                      </a>
+                    </div>
+                    <div class="col-12 col-md-6 ">
+                      <form action="{% url 'generarDeclaratoria' %}" method="get">
+                        <button class="btn btn-primary w-100 botongral" type="submit">
+                            Descargar
+                        </button>
+                      </form>
+                    </div>
+                </div>
+            </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
