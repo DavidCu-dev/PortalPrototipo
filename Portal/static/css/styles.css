@@ -1,12 +1,14 @@
 /* Estilos generales */
 body {
-    background-color: #6e6c6c;
+    background: #616058;
+background: linear-gradient(90deg, rgba(97, 96, 88, 1) 0%, rgba(217, 198, 132, 1) 50%, rgba(97, 96, 88, 1) 100%);
 }
 
-/* .navbar {
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    background-color: #0A1936 !important;
-} */
+.titulo{
+    color: white;
+    font-size: 2.5rem;
+    font-weight: bold;
+}
 
 .footer {
     background-color: #343a40 !important;

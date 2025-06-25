@@ -1,47 +1,52 @@
 {% extends 'base.html' %}
-
+{% load widget_tweaks %}
 {% block content %}
 <div class="container-fluid">
-    <div class="alert alert-danger text-center" role="alert">
-        Porfavor leer el <a href="{% url 'Disclaimer' %}" class="alert-link">DISCLAIMER</a>, aqui se encuentra una breve explicacion de este proyecto.
-    </div>
     <div class="row justify-content-center">
         <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-5">
             <div class="card signup-card shadow-lg">
                 <div class="card-header text-white" style="background-color: #343a40;">
                     <h2 class="text-center mb-0">Registro</h2>
                 </div>
-                <div class="card-body p-4 p-md-5">
+                <div class="card-body p-md-4">
                     {% if error %}
-                        <div class="alert alert-danger">{{ error }}</div>
+                        <div class="alert alert-danger text-center">{{ error }}</div>
                     {% endif %}
-                    
+                    <div class="alert alert-warning" role="alert">
+                        ⚠️ Estos formularios son solo para fines de prueba. No ingreses datos reales. Usa nombres y direcciones simuladas.
+                    </div>
                     <form action="/signup/" method="POST">
                         {% csrf_token %}
                         
                         <div class="mb-3">
                             <label for="id_username" class="form-label">Nombre de Usuario</label>
-                            {{ form.username }}
+                            <br>
+                            {{ form.username|add_class:"form-control" }}
                         </div>
                         
                         <div class="mb-3">
                             <label for="id_password1" class="form-label">Contraseña</label>
-                            {{ form.password1 }}
+                            {{ form.password1|add_class:"form-control" }}
                         </div>
                         
                         <div class="mb-3">
                             <label for="id_password2" class="form-label">Confirmar Contraseña</label>
-                            {{ form.password2 }}
+                            {{ form.password2|add_class:"form-control" }}
                         </div>
-                        <div class="d-grid">
-                            <button type="submit" class="btn btn-success">
+                        <div class="d-grid mb-3">
+                            <button type="submit" class="btn btn-success botongral">
                                 Registrarse
                             </button>
                         </div>
+                        <div class="d-flex justify-content-center ">
+                            <div class="form-check  text-center">
+                                <input class="form-check-input text-center" type="checkbox" id="politica" required>
+                                <label class="form-check-label" for="politica">
+                                    Acepto las <a href="{% url 'politicaPrivacidad' %}" style="color: #cec17b;" target="_blank">Políticas de privacidad</a>
+                                </label>
+                            </div>
+                        </div>
                     </form>
-                    <!-- <div>
-                        *<small> Al dar click en Registrarse estas de acuerdo con las <a href="/politica_privacidad">Politicas de privacidad</a> y con los <a href="/terminos_y_condiciones">Términos y condiciones</a> de este sitio web</small>
-                    </div> -->
                     <div class="text-center mt-3">
                         <p class="small">
                             ¿Ya tienes una cuenta? 
@@ -57,48 +62,3 @@
 </div>
 {% endblock %}
 
-{% block scripts %}
-<script>
-    document.querySelector('form').addEventListener('submit', function(e) {
-        const username = document.querySelector('#id_username');
-        const password1 = document.querySelector('#id_password1');
-        const password2 = document.querySelector('#id_password2');
-        
-        if (username.value.trim() === '') {
-            e.preventDefault();
-            alert('Por favor, ingresa un nombre de usuario');
-            username.focus();
-            return;
-        }
-        
-        if (password1.value.trim() === '') {
-            e.preventDefault();
-            alert('Por favor, ingresa una contraseña');
-            password1.focus();
-            return;
-        }
-        
-        if (password2.value.trim() === '') {
-            e.preventDefault();
-            alert('Por favor, confirma tu contraseña');
-            password2.focus();
-            return;
-        }
-        
-        if (password1.value !== password2.value) {
-            e.preventDefault();
-            alert('Las contraseñas no coinciden');
-            password2.focus();
-        }
-    });
-
-    // Mejorar apariencia de los campos de formulario generados por Django
-    document.addEventListener('DOMContentLoaded', function() {
-        const formControls = document.querySelectorAll('input');
-        formControls.forEach(function(input) {
-            input.classList.add('form-control');
-            input.setAttribute('placeholder', input.labels[0].textContent);
-        });
-    });
-</script>
-{% endblock %}

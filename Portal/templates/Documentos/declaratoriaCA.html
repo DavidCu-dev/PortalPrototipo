@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container-fluid mb-4" >
+    <div class="row justify-content-center">
+        <div class="documentosGenerales-card col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8 ">
+            <form id="formularioCA" action="{% url 'declaratoriaCA' %}" method="post">
+            {% csrf_token %}
+            <h4>Declaratoria de Cumplimiento Ambiental</h4>
+            <br>
+            <p>
+                Nombre de la empresa: {{form.empresaDCA}} con domicilio fiscal en: {{form.domicilioDCA}}, representada legalmente por: {{form.representanteDCA }} con RFC: {{form.rfcDCA}}, manifiesta bajo protesta de decir verdad que cumple con las disposiciones ambientales vigentes establecidas en la normativa municipal, estatal y federal aplicable.
+            </p>
+            <p>
+                De conformidad con el artículo 12 del Reglamento de Protección Ambiental del Municipio de Lorem Ipsum, se presenta la presente declaratoria en relación con las operaciones realizadas en el establecimiento ubicado en: {{form.ubicacionDCA}}. Dichas operaciones han sido evaluadas conforme al estudio de impacto ambiental con número de expediente: {{form.expedienteDCA}}.
+            </p>
+            <p>
+                El responsable técnico en materia ambiental es: {{form.responsableDCA}}, con número de cédula profesional: {{form.cedulaDCA}}, quien ha certificado que las actividades desarrolladas no generan impactos negativos fuera de los límites permisibles establecidos por las autoridades competentes.
+            </p>
+            <br>
+            <p><strong>Para efectos de comunicación y notificación, se proporciona el siguiente medio de contacto:</strong></p>
+            <p>
+                Correo electrónico: {{form.emailDCA}} <br>
+                Teléfono: {{form.telefonoDCA}}
+            </p>
+            <br><br><br>
+            <p>
+                Se firma la presente declaratoria a los {{form.diaDCA}} días del mes de {{form.mesDCA}} del año {{form.yearDCA}}
+            </p>
+            <br>
+            </form>
+            <div class="d-grid gap-4">
+                <div class="row text-center">
+                    <div class="col-12 col-md-6 ">
+                        <button type="submit" class="btn btn-primary w-100 botongral" form="formularioCA" >
+                            Guardar Datos
+                        </button>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <button type="submit" class="btn btn-primary w-100 botongral" >
+                            Borrar registro
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+            
+        </div>
+    </div>
+</div>
+
+{% endblock %}

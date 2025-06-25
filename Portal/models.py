@@ -27,4 +27,22 @@ class declaratoriaPropiedadModel(models.Model):
     reprelegalDP = models.CharField(max_length=255)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     def __str__(self):
-        return self.empresaDP + ' de: ' + self.user.username 
+        return 'Declaratoria Propidad de: ' + self.user.username
+    
+class declaCumpliAmbModel(models.Model):
+    empresaDCA = models.CharField(max_length=255)
+    domicilioDCA = models.CharField(max_length=255)
+    representanteDCA = models.CharField(max_length=255)
+    rfcDCA = models.CharField(max_length=13)
+    ubicacionDCA = models.CharField(max_length=255)
+    expedienteDCA = models.CharField(max_length=255)
+    responsableDCA = models.CharField(max_length=255)
+    cedulaDCA = models.CharField(max_length=255)
+    emailDCA = models.EmailField(max_length=255)
+    telefonoDCA = models.CharField(max_length=12)
+    diaDCA = models.CharField(max_length=2)
+    mesDCA = models.CharField(max_length=2)
+    yearDCA = models.CharField(max_length=4)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    def __str__(self):
+        return 'Declaratoria Cumplimiento Ambiental de: ' + self.user.username

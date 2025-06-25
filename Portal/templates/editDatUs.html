@@ -3,11 +3,14 @@
 {% block title %}Edit Data Usage{% endblock %}
 
 {% block content %}
-<div class="container-fluid">
+<div class="container-fluid mb-4">
     <div class="row justify-content-center">
         <div class="documentosGenerales-card col-12 col-sm-10 col-md-6 col-lg-6 col-xl-8 ">
             <h1> Datos de usuario</h1>
             {{error}}
+            <div class="alert alert-warning" role="alert">
+            ⚠️ Estos formularios son solo para fines de prueba. No ingreses datos reales. Usa nombres y direcciones simuladas.
+            </div>
             <form method="POST" id="formActualizarDatos">
                 {% csrf_token %}
                 {{form}}

@@ -8,16 +8,19 @@ from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from django.db import IntegrityError
 from django.contrib.auth.decorators import login_required
-from .forms import formDatosUsuario, formDeclaratoriaPropiedad
-from .models import datosUsuarioM, declaratoriaPropiedadModel
+
+# impórtacion de models y forms
+from .forms import formDatosUsuario, formDeclaratoriaPropiedad, formDeclaratoriaCumplimientoAmbiental
+from .models import datosUsuarioM, declaratoriaPropiedadModel, declaCumpliAmbModel
+
 # generacion de documentos
 from io import BytesIO
 from docxtpl import DocxTemplate
-# Create your views here.
 
 
-def disclaimer(request):
-    return render(request, 'disclaimer.html')
+
+def politicaPrivacidad(request):
+    return render(request, 'PV.html')
 
 
 @login_required(login_url='iniciarSesion')
@@ -109,6 +112,8 @@ def actualizarDatosUsuario(request):
                 'error': 'Error al actualizar los datos'
             })
 
+# formularios 
+
 def declaratoriaPropiedad(request):
     # Buscar si ya existen datos para este usuario
     datos = declaratoriaPropiedadModel.objects.filter(user=request.user).first()
@@ -146,6 +151,46 @@ def declaratoriaPropiedad(request):
         'form': form
     })
 
+def declaratoriaCumplimientoAmbiental(request):
+    # Buscar si ya existen datos para este usuario
+    datos = declaCumpliAmbModel.objects.filter(user=request.user).first()
+
+    # si se envia un formulario
+    if request.method == 'POST':
+
+        # si existen datos:
+        if datos:
+            # actualiza el registro existente (instance=datos) arriba
+            form = formDeclaratoriaCumplimientoAmbiental(request.POST, instance=datos) 
+
+        # Si no existen datos, crea uno nuevo
+        else:
+            form = formDeclaratoriaCumplimientoAmbiental(request.POST)
+
+        # compruieba si el formulario cumple con las validaciones    
+        
+        if form.is_valid():
+            # si es valido, guarda los datos
+            print(request.POST)
+            instancia = form.save(commit=False)
+            instancia.user = request.user  # Asegúrate de asignar el usuario si es necesario
+            instancia.save()
+            messages.success(request, 'Datos de Declaratoria de Cumplimiento Ambiental enviados correctamente')
+            return redirect('home')
+    # si no exsiosten datos:
+    else:
+        # Si ya existen datos, muestra el formulario con los datos
+        if datos:
+            form = formDeclaratoriaCumplimientoAmbiental(instance=datos)
+        else:
+            form = formDeclaratoriaCumplimientoAmbiental()
+
+    return render(request, 'Documentos/declaratoriaCA.html', {
+        'form': form
+    })
+
+# generar documentos
+
 def wordDeclaratoriaPropiedad(request):
     user = request.user
     datos=get_object_or_404(declaratoriaPropiedadModel, user=user)
@@ -173,4 +218,37 @@ def wordDeclaratoriaPropiedad(request):
     buffer.seek(0)
     response = HttpResponse(buffer,content_type='application/vnd.openxmlformats-officedocument.wordprocessingml.document')
     response['Content-Disposition'] = f'attachment; filename="declaratoria_propiedad_{datos.user}.docx"'
+    return response
+
+def wordDeclaratoriaCumplimientoAmbiental(request):
+    user = request.user
+    datos=get_object_or_404(declaCumpliAmbModel, user=user)
+    template_path = os.path.join(settings.BASE_DIR, 'Portal', 'templates', 'templatesDocs', 'declaratoria de Cumplimiento Ambiental.docx')
+
+    if not os.path.exists(template_path):
+        return HttpResponse("La plantilla no existe en la ruta especificada.")
+    context = {
+        'empresaDCA': datos.empresaDCA,
+        'domicilioDCA': datos.domicilioDCA,
+        'representanteDCA': datos.representanteDCA,
+        'rfcDCA': datos.rfcDCA,
+        'ubicacionDCA': datos.ubicacionDCA,
+        'expedienteDCA': datos.expedienteDCA,
+        'responsableDCA': datos.responsableDCA,     
+        'cedulaDCA': datos.cedulaDCA,
+        'emailDCA': datos.emailDCA,
+        'telefonoDCA': datos.telefonoDCA,
+        'diaDCA': datos.diaDCA,
+        'mesDCA': datos.mesDCA,
+        'yearDCA': datos.yearDCA,
+    }
+
+    print(context)
+    doc = DocxTemplate(template_path)
+    doc.render(context)
+    buffer = BytesIO()
+    doc.save(buffer)
+    buffer.seek(0)
+    response = HttpResponse(buffer, content_type='application/vnd.openxmlformats-officedocument.wordprocessingml.document')
+    response['Content-Disposition'] = f'attachment; filename="declaratoria_cumplimiento_ambiental_{datos.user}.docx"'
     return response

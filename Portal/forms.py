@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm
-from .models import datosUsuarioM, declaratoriaPropiedadModel
+from .models import datosUsuarioM, declaratoriaPropiedadModel, declaCumpliAmbModel
 
 
 class formDatosUsuario(ModelForm):
@@ -47,4 +47,40 @@ class formDeclaratoriaPropiedad(ModelForm):
             'emailDP': forms.EmailInput(attrs={'size':20, 'placeholder': 'example@example.com'}),
             'telefonoDP': forms.TextInput(attrs={'size':12, 'placeholder': '55-1234-5678'}),
             'reprelegalDP': forms.TextInput(attrs={'size':15, 'placeholder': 'Nombre del representante legal'}),
+        }
+
+class formDeclaratoriaCumplimientoAmbiental(ModelForm):
+    class Meta:
+        model = declaCumpliAmbModel
+        fields = ['empresaDCA', 'domicilioDCA', 'representanteDCA', 'rfcDCA', 'ubicacionDCA', 'expedienteDCA',
+                'responsableDCA', 'cedulaDCA', 'emailDCA', 'telefonoDCA', 'diaDCA', 'mesDCA', 'yearDCA']
+        labels = {
+            'empresaDCA': 'Empresa',
+            'domicilioDCA': 'Domicilio',
+            'representanteDCA': 'Representante',
+            'rfcDCA': 'RFC',
+            'ubicacionDCA': 'Ubicación',
+            'expedienteDCA': 'Expediente',
+            'responsableDCA': 'Responsable',
+            'cedulaDCA': 'Cédula',
+            'emailDCA': 'Email',
+            'telefonoDCA': 'Teléfono',
+            'diaDCA': 'Día',
+            'mesDCA': 'Mes',
+            'yearDCA': 'Año',
+        }
+        widgets = {
+            'empresaDCA': forms.TextInput(attrs={'size':25, 'placeholder': 'Maderas Lopez S.A. de C.V.'}),
+            'domicilioDCA': forms.TextInput(attrs={'size':40, 'placeholder': 'Calle, Numero, Colonia, Ciudad, Estado, CP'}),
+            'representanteDCA': forms.TextInput(attrs={'size':15, 'placeholder': 'Nombre del representante legal'}),
+            'rfcDCA': forms.TextInput(attrs={'size':13, 'placeholder': 'XXXX000000XXX'}),
+            'ubicacionDCA': forms.TextInput(attrs={'size':40, 'placeholder': 'Ubicación de la empresa'}),
+            'expedienteDCA': forms.TextInput(attrs={'size':20, 'placeholder': 'Número de expediente'}),
+            'responsableDCA': forms.TextInput(attrs={'size':15, 'placeholder': 'Nombre del responsable'}),
+            'cedulaDCA': forms.TextInput(attrs={'size':20, 'placeholder': 'Número de cédula profesional'}),
+            'emailDCA': forms.EmailInput(attrs={'size':20, 'placeholder': 'example@example.com'}),
+            'telefonoDCA': forms.TextInput(attrs={'size':12, 'placeholder': '55-1234-5678'}),
+            'diaDCA': forms.TextInput(attrs={'size':2, 'placeholder': 'DD'}),
+            'mesDCA': forms.TextInput(attrs={'size':2, 'placeholder': 'MS'}),
+            'yearDCA': forms.TextInput(attrs={'size':4, 'placeholder': 'AAAA'}),
         }

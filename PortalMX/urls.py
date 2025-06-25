@@ -23,7 +23,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('disclaimer/', views.disclaimer , name='Disclaimer'),
+    path('politica_de_privacidad/', views.politicaPrivacidad , name='politicaPrivacidad'),
     path('signup/', views.signup, name='signup'),
     path('', views.home, name='home'),
     path('logout/', views.cerrarSesion, name='logout'),
@@ -33,7 +33,9 @@ urlpatterns = [
 
     # documentos
     path('declaratoria_propiedad/', views.declaratoriaPropiedad, name= 'declaratoriaPropiedad'),
+    path('declaratoria_cumplimiento_ambiental/', views.declaratoriaCumplimientoAmbiental, name='declaratoriaCA'),
 
     # generaciondoc
-    path('generarDeclaratoria/', views.wordDeclaratoriaPropiedad, name='generarDeclaratoria'),
+    path('declaratoria_propiedad/download/', views.wordDeclaratoriaPropiedad, name='generarDeclaratoria'),
+    path('declaratoria_cumplimiento_ambiental/download/', views.wordDeclaratoriaCumplimientoAmbiental, name='generarDeclaratoriaCA'),
 ]
