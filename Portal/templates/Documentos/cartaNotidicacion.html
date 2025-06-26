@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container-fluid mb-4" >
+    <div class="row justify-content-center">
+        <div class="documentosGenerales-card col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8 ">
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+            <form action="{% url 'cartaNotificacion' %}" method="POST" id="formularioCN">
+                {% csrf_token %}
+                <h4>Carta de Notificación</h4><br>
+                <div>
+                    <p class="text-end">
+                    {{form.lugarCN}}, a {{form.diaCN}} de {{form.mesCN}} de {{form.anioCN}}
+                </p>
+                </div>
+                <br>
+                <p>
+                    A quien corresponda:
+                </p>
+                <p>
+                    Por medio de la presente se notifica al(la) C. {{form.nombreNotCN}}, con domicilio en {{form.domicilioNotCN}}, que el(la) suscrito(a), {{form.nomRemiCN }}, en su carácter de {{form.cargoRemiCN}}, adscrito(a) a la {{form.depaRemiCN}}, hace de su conocimiento que {{form.motivoCN}}.
+                </p>
+                <br>
+                <p>
+                    Esta notificación surte efectos a partir del momento en que se firma de recibido y tiene por objeto {{form.objetivoCN}}.
+                </p>
+                <br>
+                <p>
+                    Se le exhorta a presentarse en un plazo no mayor a {{form.plazoCN}} días hábiles contados a partir de la fecha de recepción de la presente, en las oficinas de {{form.ubiDepenCN}}, en un horario de {{form.horarioCN}}.
+                </p>
+                <br>
+                <p>
+                    Para cualquier duda o aclaración, podrá comunicarse al teléfono {{form.telDepenCN}} o al correo electrónico {{form.emailDepenCN}}
+                </p>
+                <br><br><br><br><br><br><br><br>
+                
+            </form>
+            <div>
+                <p class="text-center">
+                    {{nomRemiCN}} <br> {{cargoRemiCN}}
+                </p>
+                <br> <br>
+            </div>
+            <div class="d-grid gap-4">
+                <div class="row text-center">
+                    <div class="col-12 col-md-6 ">
+                        <button type="submit" class="btn btn-primary w-100 botongral" form="formularioCN" >
+                            Guardar Datos
+                        </button>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <button type="submit" class="btn btn-primary w-100 botongral" >
+                            Borrar registro
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

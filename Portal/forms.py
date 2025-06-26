@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm
-from .models import datosUsuarioM, declaratoriaPropiedadModel, declaCumpliAmbModel
+from .models import datosUsuarioM, declaratoriaPropiedadModel, declaCumpliAmbModel, cartaNotificacionModel
 
 
 class formDatosUsuario(ModelForm):
@@ -83,4 +83,47 @@ class formDeclaratoriaCumplimientoAmbiental(ModelForm):
             'diaDCA': forms.TextInput(attrs={'size':2, 'placeholder': 'DD'}),
             'mesDCA': forms.TextInput(attrs={'size':2, 'placeholder': 'MS'}),
             'yearDCA': forms.TextInput(attrs={'size':4, 'placeholder': 'AAAA'}),
+        }
+
+class formCartaNotificacion(ModelForm):
+    class Meta:
+        model = cartaNotificacionModel
+        fields = ['lugarCN', 'diaCN', 'mesCN', 'anioCN', 'nombreNotCN', 'domicilioNotCN',
+                'nomRemiCN', 'cargoRemiCN', 'depaRemiCN', 'motivoCN', 'objetivoCN',
+                'plazoCN', 'ubiDepenCN', 'horarioCN', 'telDepenCN', 'emailDepenCN']
+        labels = {
+            'lugarCN': 'Lugar',
+            'diaCN': 'Día',
+            'mesCN': 'Mes',
+            'anioCN': 'Año',
+            'nombreNotCN': 'Nombre del notificado',
+            'domicilioNotCN': 'Domicilio del notificado',
+            'nomRemiCN': 'Nombre del remitente',
+            'cargoRemiCN': 'Cargo del remitente',
+            'depaRemiCN': 'Departamento del remitente',
+            'motivoCN': 'Motivo de la notificación',
+            'objetivoCN': 'Objetivo de la notificación',
+            'plazoCN': 'Plazo para responder',
+            'ubiDepenCN': 'Ubicación de la dependencia',
+            'horarioCN': 'Horario de atención',
+            'telDepenCN': 'Teléfono de la dependencia',
+            'emailDepenCN': 'Email de la dependencia',
+        }
+        widgets = {
+            'lugarCN': forms.TextInput(attrs={'class': 'form-control d-inline-block', 'style': 'max-width:200px;', 'placeholder': 'Ciudad, Estado'}),
+            'diaCN': forms.TextInput(attrs={'class': 'form-control d-inline-block ', 'style': 'max-width:50px', 'placeholder': 'DD'}),
+            'mesCN': forms.TextInput(attrs={'class': 'form-control d-inline-block ', 'style': 'max-width:55px', 'placeholder': 'MM'}),
+            'anioCN': forms.TextInput(attrs={'class': 'form-control d-inline-block ', 'style': 'max-width:70px', 'placeholder': 'AAAA'}),
+            'nombreNotCN': forms.TextInput(attrs={'class': 'form-control d-inline-block','style': 'max-width:200px;', 'placeholder': 'Nombre del notificado'}),
+            'domicilioNotCN': forms.TextInput(attrs={'class': 'form-control d-inline-block','style': 'max-width:300px;', 'placeholder': 'Calle, Numero, Colonia, Ciudad, Estado, CP'}), 
+            'nomRemiCN': forms.TextInput(attrs={'class': 'form-control d-inline-block','style': 'max-width:200px;', 'placeholder': 'Nombre del remitente'}),
+            'cargoRemiCN': forms.TextInput(attrs={'class': 'form-control d-inline-block','style': 'max-width:200px;', 'placeholder': 'Cargo del remitente'}),    
+            'depaRemiCN': forms.TextInput(attrs={'class': 'form-control d-inline-block','style': 'max-width:250px;', 'placeholder': 'Departamento del remitente'}),
+            'motivoCN': forms.Textarea(attrs={'class': 'form-control d-inline-block', 'style': 'max-width:500px;', 'rows' : 4, 'placeholder': 'Motivo de la notificación'}),
+            'objetivoCN': forms.Textarea(attrs={'class': 'form-control d-inline-block','style': 'max-width:700px;', 'rows' : 4, 'placeholder': 'Objetivo de la notificación'}),
+            'plazoCN': forms.TextInput(attrs={'class': 'form-control d-inline-block','style': 'max-width:350px;', 'placeholder': 'Plazo para responder'}),
+            'ubiDepenCN': forms.TextInput(attrs={'class': 'form-control d-inline-block','style': 'max-width:250px;', 'placeholder': 'Ubicación de la dependencia'}),
+            'horarioCN': forms.TextInput(attrs={'class': 'form-control d-inline-block', 'style': 'max-width:300px;', 'placeholder': 'Horario de atención'}),
+            'telDepenCN': forms.TextInput(attrs={'class': 'form-control d-inline-block', 'style': 'max-width:150px;', 'placeholder': '55-1234-5678'}),
+            'emailDepenCN': forms.EmailInput(attrs={'class': 'form-control d-inline-block', 'style': 'max-width:200px;', 'placeholder': 'example@example.com'}),
         }

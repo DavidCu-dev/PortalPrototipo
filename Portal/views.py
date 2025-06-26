@@ -10,8 +10,8 @@ from django.db import IntegrityError
 from django.contrib.auth.decorators import login_required
 
 # impórtacion de models y forms
-from .forms import formDatosUsuario, formDeclaratoriaPropiedad, formDeclaratoriaCumplimientoAmbiental
-from .models import datosUsuarioM, declaratoriaPropiedadModel, declaCumpliAmbModel
+from .forms import formDatosUsuario, formDeclaratoriaPropiedad, formDeclaratoriaCumplimientoAmbiental, formCartaNotificacion
+from .models import datosUsuarioM, declaratoriaPropiedadModel, declaCumpliAmbModel, cartaNotificacionModel
 
 # generacion de documentos
 from io import BytesIO
@@ -189,6 +189,47 @@ def declaratoriaCumplimientoAmbiental(request):
         'form': form
     })
 
+
+def cartaNotificacion(request):
+    # Buscar si ya existen datos para este usuario
+    datos = cartaNotificacionModel.objects.filter(user=request.user).first()
+
+    # si se envia un formulario
+    if request.method == 'POST':
+
+        # si existen datos:
+        if datos:
+            # actualiza el registro existente (instance=datos) arriba
+            form = formCartaNotificacion(request.POST, instance=datos) 
+
+        # Si no existen datos, crea uno nuevo
+        else:
+            form = formCartaNotificacion(request.POST)
+
+        # compruieba si el formulario cumple con las validaciones    
+        
+        if form.is_valid():
+            # si es valido, guarda los datos
+            print(request.POST)
+            instancia = form.save(commit=False)
+            instancia.user = request.user  # Asegúrate de asignar el usuario si es necesario
+            instancia.save()
+            messages.success(request, 'Datos de Carta de Notificacion enviados correctamente')
+            return redirect('home')
+        else:
+            messages.error(request, 'Por favor introdusca valores validos.')
+            print(form.errors) 
+    # si no exsiosten datos:
+    else:
+        # Si ya existen datos, muestra el formulario con los datos
+        if datos:
+            form = formCartaNotificacion(instance=datos)
+        else:
+            form = formCartaNotificacion()
+
+    return render(request, 'Documentos/cartaNotidicacion.html', {
+        'form': form
+    })
 # generar documentos
 
 def wordDeclaratoriaPropiedad(request):
@@ -251,4 +292,42 @@ def wordDeclaratoriaCumplimientoAmbiental(request):
     buffer.seek(0)
     response = HttpResponse(buffer, content_type='application/vnd.openxmlformats-officedocument.wordprocessingml.document')
     response['Content-Disposition'] = f'attachment; filename="declaratoria_cumplimiento_ambiental_{datos.user}.docx"'
+    return response
+
+
+
+def wordCartaNotificacion(request):
+    user = request.user
+    datos=get_object_or_404(cartaNotificacionModel, user=user)
+    template_path = os.path.join(settings.BASE_DIR, 'Portal', 'templates', 'templatesDocs', 'Carta de Notificacion.docx')
+
+    if not os.path.exists(template_path):
+        return HttpResponse("La plantilla no existe en la ruta especificada.")
+    context = {
+        'lugarCN': datos.lugarCN,
+        'diaCN': datos.diaCN,
+        'mesCN': datos.mesCN,
+        'anioCN': datos.anioCN,
+        'nombreNotCN': datos.nombreNotCN,
+        'domicilioNotCN': datos.domicilioNotCN,
+        'nomRemiCN': datos.nomRemiCN,
+        'cargoRemiCN': datos.cargoRemiCN,
+        'depaRemiCN': datos.depaRemiCN,
+        'motivoCN': datos.motivoCN,
+        'objetivoCN': datos.objetivoCN,
+        'plazoCN': datos.plazoCN,
+        'ubiDepenCN': datos.ubiDepenCN,
+        'horarioCN': datos.horarioCN,
+        'telDepenCN': datos.telDepenCN,
+        'emailDepenCN': datos.emailDepenCN,
+    }
+
+    print(context)
+    doc = DocxTemplate(template_path)
+    doc.render(context)
+    buffer = BytesIO()
+    doc.save(buffer)
+    buffer.seek(0)
+    response = HttpResponse(buffer, content_type='application/vnd.openxmlformats-officedocument.wordprocessingml.document')
+    response['Content-Disposition'] = f'attachment; filename="Carta-Notificacion-{datos.user}.docx"'
     return response

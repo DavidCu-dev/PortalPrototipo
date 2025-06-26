@@ -46,3 +46,25 @@ class declaCumpliAmbModel(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     def __str__(self):
         return 'Declaratoria Cumplimiento Ambiental de: ' + self.user.username
+    
+
+class cartaNotificacionModel(models.Model):
+    lugarCN = models.CharField(max_length=255)
+    diaCN = models.CharField(max_length=2)
+    mesCN = models.CharField(max_length=2)
+    anioCN = models.CharField(max_length=4)
+    nombreNotCN = models.CharField(max_length=255)
+    domicilioNotCN = models.CharField(max_length=255)
+    nomRemiCN = models.CharField(max_length=255)
+    cargoRemiCN = models.CharField(max_length=255)
+    depaRemiCN = models.CharField(max_length=255)
+    motivoCN = models.TextField(max_length=500)
+    objetivoCN = models.TextField(max_length=500)
+    plazoCN = models.CharField(max_length=255)
+    ubiDepenCN = models.CharField(max_length=255)
+    horarioCN = models.CharField(max_length=255)
+    telDepenCN = models.CharField(max_length=12)
+    emailDepenCN = models.EmailField(max_length=255)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    def __str__(self):
+        return 'Carta de Notificacion de: ' + self.user.username
