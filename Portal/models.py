@@ -68,3 +68,28 @@ class cartaNotificacionModel(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     def __str__(self):
         return 'Carta de Notificacion de: ' + self.user.username
+    
+class reporteVisitaTecnicaModel(models.Model):
+    ciudadRVT = models.CharField(max_length=255)
+    horaRVT = models.TimeField()
+    diaRVT = models.CharField(max_length=2)
+    mesRVT = models.CharField(max_length=2)
+    yearRVT = models.CharField(max_length=4)
+    inspectorRVT = models.CharField(max_length=255)
+    cargoRVT = models.CharField(max_length=255)
+    departamentoRVT = models.CharField(max_length=255)
+    nomEstableRVT = models.CharField(max_length=255)
+    direcEstableRVT = models.CharField(max_length=255)
+    motivoVisitaRVT = models.TextField(max_length=500)
+    condiciSeguRVT = models.TextField(max_length=500)
+    manejoResiduosRVT = models.TextField(max_length=500)
+    cumpliNormasRVT = models.TextField(max_length=500)
+    observacionesRVT = models.TextField(max_length=500)
+    nombreResponsRVT = models.CharField(max_length=255)
+    tipoIdentificacionRVT = models.CharField(max_length=255)
+    numIdentificacionRVT = models.CharField(max_length=255)
+    emailEstableciRVT = models.EmailField(max_length=255)
+    telefonoEstableciRVT = models.CharField(max_length=12)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    def __str__(self):
+        return 'Reporte de Visita Tecnica de: ' + self.user.username

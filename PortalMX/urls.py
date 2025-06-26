@@ -35,9 +35,11 @@ urlpatterns = [
     path('declaratoria_propiedad/', views.declaratoriaPropiedad, name= 'declaratoriaPropiedad'),
     path('declaratoria_cumplimiento_ambiental/', views.declaratoriaCumplimientoAmbiental, name='declaratoriaCA'),
     path('carta_notificacion/', views.cartaNotificacion, name='cartaNotificacion'),
+    path('reporte_visita_tecnica/', views.reporteVisitaTecnica, name='reporteVisitaTecnica'),
 
     # generaciondoc
     path('declaratoria_propiedad/download/', views.wordDeclaratoriaPropiedad, name='generarDeclaratoria'),
     path('declaratoria_cumplimiento_ambiental/download/', views.wordDeclaratoriaCumplimientoAmbiental, name='generarDeclaratoriaCA'),
     path('carta_notificacion/download/', views.wordCartaNotificacion, name='generarCartaNotificacion'),
+    path('reporte_visita_tecnica/download/', views.wordReporteVisiTec, name='generarReporteVT')
 ]

@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container-fluid mb-4" >
+    <div class="row justify-content-center">
+        <div class="documentosGenerales-card col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8 ">
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+            <form action="{% url 'reporteVisitaTecnica' %}" id="formularioRVT" method="post">
+                {% csrf_token %}
+                <h4>Reporte de Visita Técnica</h4>
+                <br>
+                <p>
+                    En la ciudad de {{form.ciudadRVT}}, siendo las {{form.horaRVT}} horas del día {{form.diaRVT}} de {{form.mesRVT}} del año {{form.yearRVT}}, el/la que suscribe, {{form.inspectorRVT}}, en calidad de {{form.cargoRVT }}, adscrito/a la {{form.departamentoRVT}}, realizó una visita técnica al establecimiento denominado {{form.nomEstableRVT}}, ubicado en {{form.direcEstableRVT}},con motivo de {{form.motivoVisitaRVT }}.
+                </p>
+                <p>
+                    Durante la visita se verificaron las siguientes condiciones operativas y administrativas:
+                </p>
+
+                <p>
+                    Condiciones de seguridad: {{form.condiciSeguRVT}}
+                </p>
+                
+                <p>
+                    Manejo de residuos: {{form.manejoResiduosRVT}}
+                </p>
+                <p>
+                    Cumplimiento normativo: {{form.cumpliNormasRVT}}
+                </p>
+                <p>
+                    Observaciones generales: {{form.observacionesRVT}}
+                </p>
+                <p>
+                    El responsable del establecimiento, {{form.nombreResponsRVT}}, con identificación oficial {{form.tipoIdentificacionRVT}} número {{form.numIdentificacionRVT}}, fue informado sobre las observaciones realizadas y firmó de conformidad el presente reporte.
+                </p>
+                <p>
+                    Datos de contacto del establecimiento:
+                </p>
+                <p>
+                    Correo electrónico: {{form.emailEstableciRVT}}
+                </p>
+                <p>
+                    Teléfono: {{form.telefonoEstableciRVT}}
+                </p>
+                <br><br><br>
+            </form>
+            <div class="justify-content-between d-flex flex-wrap">
+                <span class="text-center ">
+                    {{datos.inspectorRVT}} <br>
+                    <strong>Inspector / Técnico Responsable</strong>
+                </span>
+                <span class="text-center">
+                    {{datos.nombreResponsRVT}} <br>
+                    <strong>Responsable del Establecimiento</strong>
+                </span>
+            </div>
+            <div class="d-grid gap-4">
+                <div class="row text-center">
+                    <div class="col-12 col-md-6 ">
+                        <button type="submit" class="btn btn-primary w-100 botongral" form="formularioRVT" >
+                            Guardar Datos
+                        </button>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <button type="submit" class="btn btn-primary w-100 botongral" >
+                            Borrar registro
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

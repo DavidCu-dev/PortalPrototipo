@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm
-from .models import datosUsuarioM, declaratoriaPropiedadModel, declaCumpliAmbModel, cartaNotificacionModel
+from .models import datosUsuarioM, declaratoriaPropiedadModel, declaCumpliAmbModel, cartaNotificacionModel, reporteVisitaTecnicaModel
 
 
 class formDatosUsuario(ModelForm):
@@ -126,4 +126,53 @@ class formCartaNotificacion(ModelForm):
             'horarioCN': forms.TextInput(attrs={'class': 'form-control d-inline-block', 'style': 'max-width:300px;', 'placeholder': 'Horario de atención'}),
             'telDepenCN': forms.TextInput(attrs={'class': 'form-control d-inline-block', 'style': 'max-width:150px;', 'placeholder': '55-1234-5678'}),
             'emailDepenCN': forms.EmailInput(attrs={'class': 'form-control d-inline-block', 'style': 'max-width:200px;', 'placeholder': 'example@example.com'}),
+        }
+
+class formReporteVisitaTecnica(ModelForm):
+    class Meta:
+        model = reporteVisitaTecnicaModel
+        fields = ['ciudadRVT', 'horaRVT', 'diaRVT', 'mesRVT', 'yearRVT', 'inspectorRVT', 'cargoRVT', 'departamentoRVT', 'nomEstableRVT', 'direcEstableRVT', 'motivoVisitaRVT', 'condiciSeguRVT', 'manejoResiduosRVT', 'cumpliNormasRVT', 'observacionesRVT', 'nombreResponsRVT', 'tipoIdentificacionRVT','numIdentificacionRVT', 'emailEstableciRVT', 'telefonoEstableciRVT']
+        labels = {
+            'ciudadRVT': 'Ciudad',
+            'horaRVT': 'Hora',
+            'diaRVT': 'Día',
+            'mesRVT': 'Mes',
+            'yearRVT': 'Año',
+            'inspectorRVT': 'Inspector',
+            'cargoRVT': 'Cargo del inspector',
+            'departamentoRVT': 'Departamento',
+            'nomEstableRVT': 'Nombre del establecimiento',
+            'direcEstableRVT': 'Dirección del establecimiento',
+            'motivoVisitaRVT': 'Motivo de la visita',
+            'condiciSeguRVT': 'Condiciones de seguridad',
+            'manejoResiduosRVT': 'Manejo de residuos',
+            'cumpliNormasRVT': 'Cumplimiento de normas',
+            'observacionesRVT': 'Observaciones',
+            'nombreResponsRVT': 'Nombre del responsable del establecimiento',
+            'tipoIdentificacionRVT': 'Tipo de identificación',
+            'numIdentificacionRVT': 'Número de identificación',
+            'emailEstableciRVT': 'Email',
+            'telefonoEstableciRVT': 'Teléfono'
+        }
+        widgets = {
+            'ciudadRVT': forms.TextInput(attrs={'class': 'form-control d-inline-block', 'style': 'max-width:200px;', 'placeholder': 'Ciudad'}),
+            'horaRVT': forms.TimeInput(attrs={'class': 'form-control d-inline-block', 'style': 'max-width:100px;', 'type': 'time', 'placeholder': 'HH:MM'}),
+            'diaRVT': forms.TextInput(attrs={'class': 'form-control d-inline-block', 'style': 'max-width:50px;', 'placeholder': 'DD'}),
+            'mesRVT': forms.TextInput(attrs={'class': 'form-control d-inline-block', 'style': 'max-width:55px;', 'placeholder': 'MM'}),
+            'yearRVT': forms.TextInput(attrs={'class': 'form-control d-inline-block', 'style': 'max-width:70px;', 'placeholder': 'AAAA'}),
+            'inspectorRVT': forms.TextInput(attrs={'class': 'form-control d-inline-block', 'style': 'max-width:200px;', 'placeholder': 'Nombre del inspector'}),
+            'cargoRVT': forms.TextInput(attrs={'class': 'form-control d-inline-block', 'style': 'max-width:200px;', 'placeholder': 'Cargo del inspector'}),
+            'departamentoRVT': forms.TextInput(attrs={'class': 'form-control d-inline-block',  'style':'max-width:250px;',  'placeholder':'Departamento del inspector'}),
+            'nomEstableRVT': forms.TextInput(attrs={'class':'form-control d-inline-block',  'style':'max-width:250px;',  'placeholder':'Nombre del establecimiento'}),
+            'direcEstableRVT': forms.TextInput(attrs={'class':'form-control d-inline-block',  'style':'max-width:300px;',  'placeholder':'Dirección del establecimiento'}),
+            'motivoVisitaRVT': forms.Textarea(attrs={'class':'form-control d-inline-block',  'style':'max-width:500px;',  "rows":4,  "placeholder":'Motivo de la visita'}),
+            'condiciSeguRVT': forms.Textarea(attrs={'class':'form-control ',  "style":'max-width:500px;',  "rows":4,  "placeholder":'Condiciones de seguridad'}),
+            'manejoResiduosRVT': forms.Textarea(attrs={'class':'form-control ',  "style":'max-width:500px;',  "rows":4,  "placeholder":'Manejo de residuos'}),
+            'cumpliNormasRVT': forms.Textarea(attrs={'class':'form-control ',  "style":'max-width:500px;',  "rows":4,  "placeholder":'Cumplimiento de normas'}),
+            'observacionesRVT': forms.Textarea(attrs={'class':'form-control ',  "style":'max-width:500px;',  "rows":4,  "placeholder":'Observaciones'}),
+            'nombreResponsRVT': forms.TextInput(attrs={'class': 'form-control d-inline-block', 'style': 'max-width:200px;', 'placeholder': 'Nombre del responsable'}),
+            'tipoIdentificacionRVT': forms.TextInput(attrs={'class': 'form-control d-inline-block', 'style': 'max-width:200px;', 'placeholder': 'Tipo de identificación'}),
+            'numIdentificacionRVT': forms.TextInput(attrs={'class': 'form-control d-inline-block', 'style': 'max-width:200px;', 'placeholder': 'Número de identificación'}),
+            'emailEstableciRVT': forms.EmailInput(attrs={'class': 'form-control d-inline-block', 'style': 'max-width:200px;', 'placeholder': 'example@example.com'}),
+            'telefonoEstableciRVT': forms.TextInput(attrs={'class': 'form-control d-inline-block', 'style': 'max-width:150px;', 'placeholder': '55-1234-5678'}),
         }
