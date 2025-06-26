@@ -40,13 +40,13 @@ class formDeclaratoriaPropiedad(ModelForm):
             'reprelegalDP': 'Representante legal',
         }
         widgets = {
-            'dueñoDP': forms.TextInput(attrs={'size':15, 'placeholder': 'Juan Perez Lopez'}),
-            'empresaDP': forms.TextInput(attrs={'size':25, 'placeholder': 'Maderas Lopez S.A. de C.V.'}),
-            'rfcDP': forms.TextInput(attrs={'size':13, 'placeholder': 'XXXX000000XXX'}),
-            'domicilioDP': forms.TextInput(attrs={'size':40, 'placeholder': 'Calle, Numero, Colonia, Ciudad, Estado, CP'}),
-            'emailDP': forms.EmailInput(attrs={'size':20, 'placeholder': 'example@example.com'}),
-            'telefonoDP': forms.TextInput(attrs={'size':12, 'placeholder': '55-1234-5678'}),
-            'reprelegalDP': forms.TextInput(attrs={'size':15, 'placeholder': 'Nombre del representante legal'}),
+            'dueñoDP': forms.TextInput(attrs={'class': 'form-control d-inline-block', 'style': 'max-width:200px;', 'placeholder': 'Juan Perez Lopez'}),
+            'empresaDP': forms.TextInput(attrs={'class': 'form-control d-inline-block', 'style': 'max-width:200px;', 'placeholder': 'Maderas Lopez S.A. de C.V.'}),
+            'rfcDP': forms.TextInput(attrs={'class': 'form-control d-inline-block', 'style': 'max-width:200px;', 'placeholder': 'XXXX000000XXX'}),
+            'domicilioDP': forms.TextInput(attrs={'class': 'form-control d-inline-block', 'style': 'max-width:200px;', 'placeholder': 'Calle, Numero, Colonia, Ciudad, Estado, CP'}),
+            'emailDP': forms.EmailInput(attrs={'class': 'form-control d-inline-block', 'style': 'max-width:200px;', 'placeholder': 'example@example.com'}),
+            'telefonoDP': forms.TextInput(attrs={'class': 'form-control d-inline-block', 'style': 'max-width:125px;', 'placeholder': '55-1234-5678'}),
+            'reprelegalDP': forms.TextInput(attrs={'class': 'form-control d-inline-block text-center', 'style': 'max-width:200px;', 'placeholder': 'Nombre del representante legal'}),
         }
 
 class formDeclaratoriaCumplimientoAmbiental(ModelForm):
