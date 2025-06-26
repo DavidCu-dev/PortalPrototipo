@@ -70,19 +70,19 @@ class formDeclaratoriaCumplimientoAmbiental(ModelForm):
             'yearDCA': 'Año',
         }
         widgets = {
-            'empresaDCA': forms.TextInput(attrs={'size':25, 'placeholder': 'Maderas Lopez S.A. de C.V.'}),
-            'domicilioDCA': forms.TextInput(attrs={'size':40, 'placeholder': 'Calle, Numero, Colonia, Ciudad, Estado, CP'}),
-            'representanteDCA': forms.TextInput(attrs={'size':15, 'placeholder': 'Nombre del representante legal'}),
-            'rfcDCA': forms.TextInput(attrs={'size':13, 'placeholder': 'XXXX000000XXX'}),
-            'ubicacionDCA': forms.TextInput(attrs={'size':40, 'placeholder': 'Ubicación de la empresa'}),
-            'expedienteDCA': forms.TextInput(attrs={'size':20, 'placeholder': 'Número de expediente'}),
-            'responsableDCA': forms.TextInput(attrs={'size':15, 'placeholder': 'Nombre del responsable'}),
-            'cedulaDCA': forms.TextInput(attrs={'size':20, 'placeholder': 'Número de cédula profesional'}),
-            'emailDCA': forms.EmailInput(attrs={'size':20, 'placeholder': 'example@example.com'}),
-            'telefonoDCA': forms.TextInput(attrs={'size':12, 'placeholder': '55-1234-5678'}),
-            'diaDCA': forms.TextInput(attrs={'size':2, 'placeholder': 'DD'}),
-            'mesDCA': forms.TextInput(attrs={'size':2, 'placeholder': 'MS'}),
-            'yearDCA': forms.TextInput(attrs={'size':4, 'placeholder': 'AAAA'}),
+            'empresaDCA': forms.TextInput(attrs={'class': 'form-control d-inline-block', 'style': 'max-width:200px;', 'placeholder': 'Maderas Lopez S.A. de C.V.'}),
+            'domicilioDCA': forms.TextInput(attrs={'class': 'form-control d-inline-block', 'style': 'max-width:200px;', 'placeholder': 'Calle, Numero, Colonia, Ciudad, Estado, CP'}),
+            'representanteDCA': forms.TextInput(attrs={'class': 'form-control d-inline-block', 'style': 'max-width:200px;', 'placeholder': 'Nombre del representante legal'}),
+            'rfcDCA': forms.TextInput(attrs={'class': 'form-control d-inline-block', 'style': 'max-width:200px;', 'placeholder': 'XXXX000000XXX'}),
+            'ubicacionDCA': forms.TextInput(attrs={'class': 'form-control d-inline-block', 'style': 'max-width:200px;', 'placeholder': 'Ubicación de la empresa'}),
+            'expedienteDCA': forms.TextInput(attrs={'class': 'form-control d-inline-block', 'style': 'max-width:75px;', 'placeholder': 'Número de expediente'}),
+            'responsableDCA': forms.TextInput(attrs={'class': 'form-control d-inline-block', 'style': 'max-width:200px;', 'placeholder': 'Nombre del responsable'}),
+            'cedulaDCA': forms.TextInput(attrs={'class': 'form-control d-inline-block', 'style': 'max-width:200px;', 'placeholder': 'Número de cédula profesional'}),
+            'emailDCA': forms.EmailInput(attrs={'class': 'form-control d-inline-block', 'style': 'max-width:200px;', 'placeholder': 'example@example.com'}),
+            'telefonoDCA': forms.TextInput(attrs={'class': 'form-control d-inline-block', 'style': 'max-width:200px;', 'placeholder': '55-1234-5678'}),
+            'diaDCA': forms.TextInput(attrs={'class': 'form-control d-inline-block text-center', 'style': 'max-width:50px;', 'placeholder': 'DD'}),
+            'mesDCA': forms.TextInput(attrs={'class': 'form-control d-inline-block text-center', 'style': 'max-width:50px;', 'placeholder': 'MS'}),
+            'yearDCA': forms.TextInput(attrs={'class': 'form-control d-inline-block text-center', 'style': 'max-width:75px;', 'placeholder': 'AAAA'}),
         }
 
 class formCartaNotificacion(ModelForm):
