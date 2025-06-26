@@ -2,6 +2,10 @@
 
 <div class="container mt-4">
   <h1 class="text-center titulo">INICIO</h1>
+  <div class="text-center">
+            <img src="static/images/profile.webp" alt="" class="rounded-circle" style="width: 200px; height: 200px;">
+            <h4>{{datosUsuario.user}}</h4>
+  </div>
   {% if messages %}
   {% for message in messages %}
     <div class="alert alert-success" role="alert">
@@ -30,9 +34,6 @@
         data-bs-parent="#accordionExample"
       >
         <div class="accordion-body">
-          <div class="text-center">
-            <img src="static/images/profile.webp" alt="" class="rounded-circle" style="width: 200px; height: 200px;">
-          </div>
             <ul class="list-group list-group-flush">
               <li class="list-group-item">
                 <strong>Propietario: </strong>{{datosUsuario.propietario}}
@@ -55,7 +56,7 @@
               <li class="list-group-item">
                 <strong>Descripcion: </strong>{{datosUsuario.descripcion}}
               </li>
-              <li class="list-group-item">
+              <li class="list-group-item text-center">
                 <a href="{% url 'actualizar' %}">
                   <button class="btn btn-primary botongral">
                     Actualizar Datos
@@ -105,16 +106,17 @@
               </p>
               <div class="d-grid gap-4">
                 <div class="row text-center">
-                  <div class="col-12 col-md-6">
+                  <div class="col-12 col-md-6 mt-3">
                       <a href="{% url 'declaratoriaPropiedad' %}">
                         <button class="btn btn-primary w-100 botongral">
                             Llenar Formulario
                         </button>
                       </a>
                     </div>
-                    <div class="col-12 col-md-6 ">
+                    <div class="col-12 col-md-6 mt-3">
                       <form action="{% url 'generarDeclaratoria' %}" method="get">
-                        <button class="btn btn-primary w-100 botongral" type="submit">
+                        <button class="btn btn-primary w-100 botongral" type="submit" {% if not formDPexiste %}disabled{% endif %}>
+                          
                             Descargar
                         </button>
                       </form>
@@ -134,16 +136,16 @@
               </p>
               <div class="d-grid gap-4">
                 <div class="row text-center">
-                  <div class="col-12 col-md-6">
+                  <div class="col-12 col-md-6 mt-3">
                       <a href="{% url 'declaratoriaCA' %}">
                         <button class="btn btn-primary w-100 botongral">
                             Llenar Formulario
                         </button>
                       </a>
                     </div>
-                    <div class="col-12 col-md-6 ">
+                    <div class="col-12 col-md-6 mt-3">
                       <form action="{% url 'generarDeclaratoriaCA' %}" method="get">
-                        <button class="btn btn-primary w-100 botongral" type="submit">
+                        <button class="btn btn-primary w-100 botongral" type="submit" {% if not formCAexiste %}disabled{% endif %}>
                             Descargar
                         </button>
                       </form>
@@ -162,16 +164,16 @@
               </p>
               <div class="d-grid gap-4">
                 <div class="row text-center">
-                  <div class="col-12 col-md-6">
+                  <div class="col-12 col-md-6 mt-3">
                       <a href="{% url 'cartaNotificacion' %}">
                         <button class="btn btn-primary w-100 botongral">
                             Llenar Formulario
                         </button>
                       </a>
                     </div>
-                    <div class="col-12 col-md-6 ">
+                    <div class="col-12 col-md-6 mt-3">
                       <form action="{% url 'generarCartaNotificacion' %}" method="get">
-                        <button class="btn btn-primary w-100 botongral" type="submit">
+                        <button class="btn btn-primary w-100 botongral" type="submit" {% if not formCNexiste %}disabled{% endif %}>
                             Descargar
                         </button>
                       </form>
@@ -190,16 +192,16 @@
               </p>
               <div class="d-grid gap-4">
                 <div class="row text-center">
-                  <div class="col-12 col-md-6">
+                  <div class="col-12 col-md-6 mt-3">
                       <a href="{% url 'reporteVisitaTecnica' %}">
                         <button class="btn btn-primary w-100 botongral">
                             Llenar Formulario
                         </button>
                       </a>
                     </div>
-                    <div class="col-12 col-md-6 ">
+                    <div class="col-12 col-md-6 mt-3">
                       <form action="{% url 'generarReporteVT' %}" method="get">
-                        <button class="btn btn-primary w-100 botongral" type="submit">
+                        <button class="btn btn-primary w-100 botongral" type="submit" {% if not formRVTexiste %}disabled{% endif %}>
                             Descargar
                         </button>
                       </form>

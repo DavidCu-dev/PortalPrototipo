@@ -26,8 +26,16 @@ def politicaPrivacidad(request):
 @login_required(login_url='iniciarSesion')
 def home(request):
     datos = datosUsuarioM.objects.filter(user=request.user).first()
+    formDPex = declaratoriaPropiedadModel.objects.filter(user=request.user).exists()
+    formCAex = declaCumpliAmbModel.objects.filter(user=request.user).exists()
+    formCNex = cartaNotificacionModel.objects.filter(user=request.user).exists()
+    formRVTex = reporteVisitaTecnicaModel.objects.filter(user=request.user).exists()
     return render(request, 'home.html', {
-        'datosUsuario': datos
+        'datosUsuario': datos,
+        'formDPexiste':formDPex,
+        'formCAexiste':formCAex,
+        'formCNexiste':formCNex,
+        'formRVTexiste':formRVTex
     })
 
 
