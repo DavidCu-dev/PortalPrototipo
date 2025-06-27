@@ -43,9 +43,12 @@
                         </button>
                     </div>
                     <div class="col-12 col-md-6">
-                        <button type="submit" class="btn btn-primary w-100 botongral" >
-                            Borrar registro
-                        </button>
+                        <form action="{% url 'borrarDCA' %}" method="post" >
+                            {% csrf_token %}
+                            <button class="btn btn-primary w-100 botongral" >
+                                Borrar registro
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>

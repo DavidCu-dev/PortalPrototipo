@@ -35,7 +35,7 @@ def home(request):
         'formDPexiste':formDPex,
         'formCAexiste':formCAex,
         'formCNexiste':formCNex,
-        'formRVTexiste':formRVTex
+        'formRVTexiste':formRVTex 
     })
 
 
@@ -203,7 +203,6 @@ def declaratoriaCumplimientoAmbiental(request):
         'form': form
     })
 
-
 def cartaNotificacion(request):
     # Buscar si ya existen datos para este usuario
     datos = cartaNotificacionModel.objects.filter(user=request.user).first()
@@ -286,6 +285,36 @@ def reporteVisitaTecnica(request):
         'form': form,
         'datos': datos
     })
+
+
+# borrar registros
+def borrarDP(request):
+    borrar = declaratoriaPropiedadModel.objects.filter(user=request.user)
+    if request.method == 'POST':
+        borrar.delete()
+        messages.success(request, 'Datos eliminados')
+        return redirect('home')
+
+def borrarDCA(request):
+    borrar = declaCumpliAmbModel.objects.filter(user=request.user)
+    if request.method == 'POST':
+        borrar.delete()
+        messages.success(request, 'Datos eliminados')
+        return redirect('home')
+
+def borrarCN(request):
+    borrar = cartaNotificacionModel.objects.filter(user=request.user)
+    if request.method == 'POST':
+        borrar.delete()
+        messages.success(request, 'Datos eliminados')
+        return redirect('home')
+
+def borrarRVT(request):
+    borrar = reporteVisitaTecnicaModel.objects.filter(user=request.user)
+    if request.method == 'POST':
+        borrar.delete()
+        messages.success(request, 'Datos eliminados')
+        return redirect('home')
 
 # generar documentos
 

@@ -37,6 +37,12 @@ urlpatterns = [
     path('carta_notificacion/', views.cartaNotificacion, name='cartaNotificacion'),
     path('reporte_visita_tecnica/', views.reporteVisitaTecnica, name='reporteVisitaTecnica'),
 
+    # borrar registros
+    path('declaratoria_propiedad/delete', views.borrarDP, name='borrarDP'),
+    path('declaratoria_cumplimiento_ambiental/delete', views.borrarDCA, name='borrarDCA'),
+    path('carta_notificacion/delete', views.borrarCN, name='borrarCN'),
+    path('reporte_visita_tecnica/delete', views.borrarRVT, name='borrarRVT'),
+
     # generaciondoc
     path('declaratoria_propiedad/download/', views.wordDeclaratoriaPropiedad, name='generarDeclaratoria'),
     path('declaratoria_cumplimiento_ambiental/download/', views.wordDeclaratoriaCumplimientoAmbiental, name='generarDeclaratoriaCA'),
