@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm
-from .models import datosUsuarioM, declaratoriaPropiedadModel, declaCumpliAmbModel, cartaNotificacionModel, reporteVisitaTecnicaModel
+from .models import datosUsuarioM, declaratoriaPropiedadModel, declaCumpliAmbModel, cartaNotificacionModel, reporteVisitaTecnicaModel, inventarioOficina
 
 
 class formDatosUsuario(ModelForm):
@@ -175,4 +175,93 @@ class formReporteVisitaTecnica(ModelForm):
             'numIdentificacionRVT': forms.TextInput(attrs={'class': 'form-control d-inline-block', 'style': 'max-width:200px;', 'placeholder': 'Número de identificación'}),
             'emailEstableciRVT': forms.EmailInput(attrs={'class': 'form-control d-inline-block', 'style': 'max-width:200px;', 'placeholder': 'example@example.com'}),
             'telefonoEstableciRVT': forms.TextInput(attrs={'class': 'form-control d-inline-block', 'style': 'max-width:150px;', 'placeholder': '55-1234-5678'}),
+        }
+
+class formInventarioOff(ModelForm):
+    class Meta:
+        model = inventarioOficina
+        fields =[
+            'escriCant', 'escriModelo', 'escriCondicion', 'escriUbi', 'escriObservaciones',
+            'sillaCant', 'sillaModelo', 'sillaCondicion', 'sillaUbi', 'sillaObservacion',
+            'LapCant', 'LapModelo', 'LapCondicion', 'LapUbi', 'LapObservacion',
+            'proyecCant', 'proyecModelo', 'proyecCondicion', 'proyecUbi', 'proyecObservacion',
+            'impreCant', 'impreModelo', 'impreCondicion', 'impreUbi', 'impreObservacion',
+            'aguaCant', 'aguaModelo', 'aguaCondicion', 'aguaUbi', 'aguaObservacion',
+            'escobCant', 'escobModelo', 'escobCondicion', 'escobUbi', 'escobObservacion',
+            'extintCant', 'extintModelo', 'extintCondicion', 'extintUbi', 'extintObservacion',
+            'jabonCant', 'jabonModelo', 'jabonCondicion', 'jabonUbi', 'jabonObservacion',
+            'hojasCant', 'hojasModelo', 'hojasCondicion', 'hojasUbi', 'hojasObservacion']
+        labels = {
+            'escriCant: Cantidad de escritorios', 'escriModelo: Modelo de escritorios', 'escriCondicion: Condicion de escritorios', 'escriUbi: Ubicacion de escritorios', 'escriObservaciones: Observaciones escritorios',
+            'sillaCant: cantidad sillas', 'sillaModelo; modelo sillas', 'sillaCondicion: condiciones sillas', 'sillaUbi: ubicacion sillas', 'sillaObservacion: observaciones sillas',
+            'LapCant: cantidad laptops', 'LapModelo: modelo laptops', 'LapCondicion: condicion laptops', 'LapUbi: ubicacion laptops', 'LapObservacion: observacion laptops',
+            'proyecCant: cantidad proyectores', 'proyecModelo: modelo proyectores', 'proyecCondicion: condicion proyectores', 'proyecUbi: ubicacion proyectores', 'proyecObservacion: observacion proyectores',
+            'impreCant: cantidadimpresoras', 'impreModelo: modelo impresoras', 'impreCondicion: condicion impresoras', 'impreUbi: ubicaion impresoras', 'impreObservacion: observacion impresoras',
+            'aguaCant: cantidad garrafones', 'aguaModelo: marca garrafon', 'aguaCondicion: condicion garrafon', 'aguaUbi: ubicacion garrafones', 'aguaObservacion: observacion garrafones',
+            'escobCant: cantidad escobas ', 'escobModelo: modelo de escoba', 'escobCondicion: condicion escobas', 'escobUbi: ubicacion escobas', 'escobObservacion: observacion escobas',
+            'extintCant: cantidad extintores', 'extintModelo: modelo extintores', 'extintCondicion: condicion extintores', 'extintUbi: ubicacion extintores', 'extintObservacion: observacion extintores',
+            'jabonCant: cantidad jabon', 'jabonModelo: marca jabon', 'jabonCondicion: condicion jabon', 'jabonUbi: ubicacion jabon', 'jabonObservacion: observacion jabon',
+            'hojasCant: cantidad paquetes', 'hojasModelo: marca de hojas', 'hojasCondicion: condicion paquetes', 'hojasUbi: ubicacion hojas', 'hojasObservacion: observacion hojas'
+        }
+        widgets ={
+            'escriCant': forms.NumberInput(attrs={'class': 'form-control d-line-block','style': 'max-width:200px;', 'placeholder': 'Num.'}), 
+            'escriModelo': forms.TextInput(attrs={'class': 'form-control d-line-block','style': 'max-width:200px;', 'placeholder': 'Modelo'}), 
+            'escriCondicion': forms.TextInput(attrs={'class': 'form-control d-line-block','style': 'max-width:200px;', 'placeholder': 'Condicion'}), 
+            'escriUbi': forms.TextInput(attrs={'class': 'form-control d-line-block','style': 'max-width:200px;', 'placeholder': 'Ubicacion'}), 
+            'escriObservaciones': forms.Textarea(attrs={'class': 'form-control d-line-block','style': 'max-width:500px;', "rows":4, 'placeholder': 'Observaciones'}),
+
+            'sillaCant': forms.NumberInput(attrs={'class': 'form-control d-line-block','style': 'max-width:200px;', 'placeholder': 'Num.'}), 
+            'sillaModelo': forms.TextInput(attrs={'class': 'form-control d-line-block','style': 'max-width:200px;', 'placeholder': 'Modelo'}), 
+            'sillaCondicion': forms.TextInput(attrs={'class': 'form-control d-line-block','style': 'max-width:200px;', 'placeholder': 'Condicion'}), 
+            'sillaUbi': forms.TextInput(attrs={'class': 'form-control d-line-block','style': 'max-width:200px;', 'placeholder': 'Ubicacion'}), 
+            'sillaObservacion': forms.Textarea(attrs={'class': 'form-control d-line-block','style': 'max-width:500px;', "rows":4, 'placeholder': 'Observaciones'}),
+
+            'LapCant': forms.NumberInput(attrs={'class': 'form-control d-line-block','style': 'max-width:200px;', 'placeholder': 'Num.'}), 
+            'LapModelo': forms.TextInput(attrs={'class': 'form-control d-line-block','style': 'max-width:200px;', 'placeholder': 'Modelo'}), 
+            'LapCondicion': forms.TextInput(attrs={'class': 'form-control d-line-block','style': 'max-width:200px;', 'placeholder': 'Condicion'}), 
+            'LapUbi': forms.TextInput(attrs={'class': 'form-control d-line-block','style': 'max-width:200px;', 'placeholder': 'Ubicacion'}), 
+            'LapObservacion': forms.Textarea(attrs={'class': 'form-control d-line-block','style': 'max-width:500px;', "rows":4, 'placeholder': 'Observaciones'}),
+
+            'proyecCant': forms.NumberInput(attrs={'class': 'form-control d-line-block','style': 'max-width:200px;', 'placeholder': 'Num.'}), 
+            'proyecModelo': forms.TextInput(attrs={'class': 'form-control d-line-block','style': 'max-width:200px;', 'placeholder': 'Modelo'}), 
+            'proyecCondicion': forms.TextInput(attrs={'class': 'form-control d-line-block','style': 'max-width:200px;', 'placeholder': 'Condicion'}), 
+            'proyecUbi': forms.TextInput(attrs={'class': 'form-control d-line-block','style': 'max-width:200px;', 'placeholder': 'Ubicacion'}), 
+            'proyecObservacion': forms.Textarea(attrs={'class': 'form-control d-line-block','style': 'max-width:500px;', "rows":4, 'placeholder': 'Observaciones'}),
+
+            'impreCant': forms.NumberInput(attrs={'class': 'form-control d-line-block','style': 'max-width:200px;', 'placeholder': 'Num.'}), 
+            'impreModelo': forms.TextInput(attrs={'class': 'form-control d-line-block','style': 'max-width:200px;', 'placeholder': 'Modelo'}), 
+            'impreCondicion': forms.TextInput(attrs={'class': 'form-control d-line-block','style': 'max-width:200px;', 'placeholder': 'Condicion'}), 
+            'impreUbi': forms.TextInput(attrs={'class': 'form-control d-line-block','style': 'max-width:200px;', 'placeholder': 'Ubicaion'}), 
+            'impreObservacion': forms.Textarea(attrs={'class': 'form-control d-line-block','style': 'max-width:500px;', "rows":4, 'placeholder': 'Observaciones'}),
+
+            'aguaCant': forms.NumberInput(attrs={'class': 'form-control d-line-block','style': 'max-width:200px;', 'placeholder': 'Num.'}), 
+            'aguaModelo': forms.TextInput(attrs={'class': 'form-control d-line-block','style': 'max-width:200px;', 'placeholder': 'Marca'}), 
+            'aguaCondicion': forms.TextInput(attrs={'class': 'form-control d-line-block','style': 'max-width:200px;', 'placeholder': 'Condicion'}), 
+            'aguaUbi': forms.TextInput(attrs={'class': 'form-control d-line-block','style': 'max-width:200px;', 'placeholder': 'Ubicacion'}), 
+            'aguaObservacion': forms.Textarea(attrs={'class': 'form-control d-line-block','style': 'max-width:500px;', "rows":4, 'placeholder': 'Observaciones'}),
+
+            'escobCant': forms.NumberInput(attrs={'class': 'form-control d-line-block','style': 'max-width:200px;', 'placeholder': 'Num.'}), 
+            'escobModelo': forms.TextInput(attrs={'class': 'form-control d-line-block','style': 'max-width:200px;', 'placeholder': 'Marca'}), 
+            'escobCondicion': forms.TextInput(attrs={'class': 'form-control d-line-block','style': 'max-width:200px;', 'placeholder': 'Condicion'}), 
+            'escobUbi': forms.TextInput(attrs={'class': 'form-control d-line-block','style': 'max-width:200px;', 'placeholder': 'Ubicacion'}), 
+            'escobObservacion': forms.Textarea(attrs={'class': 'form-control d-line-block','style': 'max-width:500px;', "rows":4, 'placeholder': 'Observaciones'}),
+
+            'extintCant': forms.NumberInput(attrs={'class': 'form-control d-line-block','style': 'max-width:200px;', 'placeholder': 'Num.'}), 
+            'extintModelo': forms.TextInput(attrs={'class': 'form-control d-line-block','style': 'max-width:200px;', 'placeholder': 'Modelo'}), 
+            'extintCondicion': forms.TextInput(attrs={'class': 'form-control d-line-block','style': 'max-width:200px;', 'placeholder': 'Condicion'}), 
+            'extintUbi': forms.TextInput(attrs={'class': 'form-control d-line-block','style': 'max-width:200px;', 'placeholder': 'Ubicacion'}), 
+            'extintObservacion': forms.Textarea(attrs={'class': 'form-control d-line-block','style': 'max-width:500px;', "rows":4, 'placeholder': 'Observaciones'}),
+
+            'jabonCant': forms.NumberInput(attrs={'class': 'form-control d-line-block','style': 'max-width:200px;', 'placeholder': 'Num.'}), 
+            'jabonModelo': forms.TextInput(attrs={'class': 'form-control d-line-block','style': 'max-width:200px;', 'placeholder': 'Marca'}), 
+            'jabonCondicion': forms.TextInput(attrs={'class': 'form-control d-line-block','style': 'max-width:200px;', 'placeholder': 'Condicion'}), 
+            'jabonUbi': forms.TextInput(attrs={'class': 'form-control d-line-block','style': 'max-width:200px;', 'placeholder': 'Ubicacion'}), 
+            'jabonObservacion': forms.Textarea(attrs={'class': 'form-control d-line-block','style': 'max-width:500px;', "rows":4, 'placeholder': 'Observaciones'}),
+
+            'hojasCant': forms.NumberInput(attrs={'class': 'form-control d-line-block','style': 'max-width:200px;', 'placeholder': 'Num.'}), 
+            'hojasModelo': forms.TextInput(attrs={'class': 'form-control d-line-block','style': 'max-width:200px;', 'placeholder': 'Marca'}), 
+            'hojasCondicion': forms.TextInput(attrs={'class': 'form-control d-line-block','style': 'max-width:200px;', 'placeholder': 'Condicion'}), 
+            'hojasUbi': forms.TextInput(attrs={'class': 'form-control d-line-block','style': 'max-width:200px;', 'placeholder': 'Ubicacion'}), 
+            'hojasObservacion': forms.Textarea(attrs={'class': 'form-control d-line-block','style': 'max-width:500px;', "rows":4, 'placeholder': 'Observaciones'}),
+
         }

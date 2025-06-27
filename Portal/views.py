@@ -10,8 +10,8 @@ from django.db import IntegrityError
 from django.contrib.auth.decorators import login_required
 
 # impórtacion de models y forms
-from .forms import formDatosUsuario, formDeclaratoriaPropiedad, formDeclaratoriaCumplimientoAmbiental, formCartaNotificacion, formReporteVisitaTecnica
-from .models import datosUsuarioM, declaratoriaPropiedadModel, declaCumpliAmbModel, cartaNotificacionModel, reporteVisitaTecnicaModel
+from .forms import formDatosUsuario, formDeclaratoriaPropiedad, formDeclaratoriaCumplimientoAmbiental, formCartaNotificacion, formReporteVisitaTecnica, formInventarioOff
+from .models import datosUsuarioM, declaratoriaPropiedadModel, declaCumpliAmbModel, cartaNotificacionModel, reporteVisitaTecnicaModel, inventarioOficina
 
 # generacion de documentos
 from io import BytesIO
@@ -286,6 +286,46 @@ def reporteVisitaTecnica(request):
         'datos': datos
     })
 
+def suplementosOficina(request):
+    # Buscar si ya existen datos para este usuario
+    datos = inventarioOficina.objects.filter(user=request.user).first()
+
+    # si se envia un formulario
+    if request.method == 'POST':
+
+        # si existen datos:
+        if datos:
+            # actualiza el registro existente (instance=datos) arriba
+            form = formInventarioOff(request.POST, instance=datos) 
+
+        # Si no existen datos, crea uno nuevo
+        else:
+            form = formInventarioOff(request.POST)
+
+        # compruieba si el formulario cumple con las validaciones    
+        
+        if form.is_valid():
+            # si es valido, guarda los datos
+            instancia = form.save(commit=False)
+            instancia.user = request.user  # Asegúrate de asignar el usuario si es necesario
+            instancia.save()
+            messages.success(request, 'Datos de Inventario de Oficina enviados correctamente')
+            return redirect('home')
+        else:
+            messages.error(request, 'Por favor introdusca valores validos.')
+            print(form.errors) 
+    # si no exsiosten datos:
+    else:
+        # Si ya existen datos, muestra el formulario con los datos
+        if datos:
+            form = formInventarioOff(instance=datos)
+        else:
+            form = formInventarioOff()
+
+    return render(request, 'Documentos/inventOficina.html', {
+        'form': form,
+        'datos': datos
+    })
 
 # borrar registros
 def borrarDP(request):

@@ -210,6 +210,34 @@
             </div>
             </div>
           </div>
+
+          <!-- inventario de oficina -->
+          <div class="card mb-3">
+              <h5 class="card-header alert alert-warning">Inventario de oficina</h5>
+            <div class="card-body">
+              <p class="card-text">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Est, sequi! Quas inventore exercitationem pariatur, esse non doloremque cumque voluptate repellat ab soluta repudiandae. Mollitia recusandae quae, ex molestias rem libero, porro vero saepe eius rerum minus neque sit labore nihil error quisquam minima necessitatibus temporibus cum quibusdam repudiandae ea nisi ipsa iure! Expedita illum dolore aliquam quasi deserunt iusto impedit architecto, delectus suscipit voluptatum alias? Voluptatibus, sapiente? Exercitationem ex quas atque itaque culpa rem ducimus quos laborum ullam! Et in nesciunt odio mollitia tempore iusto error. Enim, error fugit! Earum aspernatur ad minus rerum id. Consectetur corrupti sapiente ipsa ab.
+              </p>
+              <div class="d-grid gap-4">
+                <div class="row text-center">
+                  <div class="col-12 col-md-6 mt-3">
+                      <a href="{% url 'inventOfi' %}">
+                        <button class="btn btn-primary w-100 botongral">
+                            Llenar Formulario
+                        </button>
+                      </a>
+                    </div>
+                    <div class="col-12 col-md-6 mt-3">
+                      <form action="" method="get">
+                        <button class="btn btn-primary w-100 botongral" type="submit" {% if not formRVTexiste %}disabled{% endif %}>
+                            Descargar
+                        </button>
+                      </form>
+                    </div>
+                </div>
+            </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

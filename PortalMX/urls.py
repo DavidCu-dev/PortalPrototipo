@@ -36,6 +36,7 @@ urlpatterns = [
     path('declaratoria_cumplimiento_ambiental/', views.declaratoriaCumplimientoAmbiental, name='declaratoriaCA'),
     path('carta_notificacion/', views.cartaNotificacion, name='cartaNotificacion'),
     path('reporte_visita_tecnica/', views.reporteVisitaTecnica, name='reporteVisitaTecnica'),
+    path('inventario_oficina/', views.suplementosOficina, name='inventOfi'),
 
     # borrar registros
     path('declaratoria_propiedad/delete', views.borrarDP, name='borrarDP'),
