@@ -48,5 +48,6 @@ urlpatterns = [
     path('declaratoria_propiedad/download/', views.wordDeclaratoriaPropiedad, name='generarDeclaratoria'),
     path('declaratoria_cumplimiento_ambiental/download/', views.wordDeclaratoriaCumplimientoAmbiental, name='generarDeclaratoriaCA'),
     path('carta_notificacion/download/', views.wordCartaNotificacion, name='generarCartaNotificacion'),
-    path('reporte_visita_tecnica/download/', views.wordReporteVisiTec, name='generarReporteVT')
+    path('reporte_visita_tecnica/download/', views.wordReporteVisiTec, name='generarReporteVT'),
+    path('inventario_oficina/download/', views.excelInventatio, name='generarInventario')
 ]

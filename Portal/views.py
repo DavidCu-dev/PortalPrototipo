@@ -16,7 +16,7 @@ from .models import datosUsuarioM, declaratoriaPropiedadModel, declaCumpliAmbMod
 # generacion de documentos
 from io import BytesIO
 from docxtpl import DocxTemplate
-
+import openpyxl
 
 
 def politicaPrivacidad(request):
@@ -30,12 +30,14 @@ def home(request):
     formCAex = declaCumpliAmbModel.objects.filter(user=request.user).exists()
     formCNex = cartaNotificacionModel.objects.filter(user=request.user).exists()
     formRVTex = reporteVisitaTecnicaModel.objects.filter(user=request.user).exists()
+    formInventOf = inventarioOficina.objects.filter(user=request.user).exists()
     return render(request, 'home.html', {
         'datosUsuario': datos,
         'formDPexiste':formDPex,
         'formCAexiste':formCAex,
         'formCNexiste':formCNex,
-        'formRVTexiste':formRVTex 
+        'formRVTexiste':formRVTex,
+        'formInventarioExiste':formInventOf
     })
 
 
@@ -495,4 +497,84 @@ def wordReporteVisiTec(request):
     buffer.seek(0)
     response = HttpResponse(buffer, content_type='application/vnd.openxmlformats-officedocument.wordprocessingml.document')
     response['Content-Disposition'] = f'attachment; filename="Reporte visita tecnica {datos.user}.docx"'
+    return response
+
+def excelInventatio(request):
+    datos = inventarioOficina.objects.filter(user=request.user).first()
+    template_path = os.path.join(settings.BASE_DIR, 'Portal', 'templates', 'templatesDocs', 'Inventario Oficina.xlsx')
+    wb = openpyxl.load_workbook(template_path)
+    ws = wb.active
+
+    ws["D3"]=datos.escriCant
+    ws["E3"]=datos.escriModelo
+    ws["F3"]=datos.escriCondicion
+    ws["G3"]=datos.escriUbi
+    ws["H3"]=datos.escriObservaciones
+    
+    ws["D4"]=datos.sillaCant
+    ws["E4"]=datos.sillaCant
+    ws["F4"]=datos.sillaCondicion
+    ws["G4"]=datos.sillaUbi
+    ws["H4"]=datos.sillaObservacion
+
+    ws["D5"]=datos.LapCant
+    ws["E5"]=datos.LapModelo
+    ws["F5"]=datos.LapCondicion
+    ws["G5"]=datos.LapUbi
+    ws["H5"]=datos.LapObservacion
+    
+    ws["D6"]=datos.proyecCant
+    ws["E6"]=datos.proyecModelo
+    ws["F6"]=datos.proyecCondicion
+    ws["G6"]=datos.proyecUbi
+    ws["H6"]=datos.proyecObservacion
+    
+    ws["D7"]=datos.impreCant
+    ws["E7"]=datos.impreModelo
+    ws["F7"]=datos.impreCondicion
+    ws["G7"]=datos.impreUbi
+    ws["H7"]=datos.impreObservacion
+    
+    ws["D8"]=datos.aguaCant
+    ws["E8"]=datos.aguaModelo
+    ws["F8"]=datos.aguaCondicion
+    ws["G8"]=datos.aguaUbi
+    ws["H8"]=datos.aguaObservacion
+
+    ws["D9"]=datos.escobCant
+    ws["E9"]=datos.escobModelo
+    ws["F9"]=datos.escobCondicion
+    ws["G9"]=datos.escobUbi
+    ws["H9"]=datos.escobObservacion
+    
+    ws["D10"]=datos.extintCant
+    ws["E10"]=datos.extintModelo
+    ws["F10"]=datos.extintCondicion
+    ws["G10"]=datos.extintUbi
+    ws["H10"]=datos.extintObservacion
+    
+    ws["D11"]=datos.jabonCant
+    ws["E11"]=datos.jabonModelo
+    ws["F11"]=datos.jabonCondicion
+    ws["G11"]=datos.jabonUbi
+    ws["H11"]=datos.jabonObservacion
+    
+    ws["D12"]=datos.hojasCant
+    ws["E12"]=datos.hojasModelo
+    ws["F12"]=datos.hojasCondicion
+    ws["G12"]=datos.hojasUbi
+    ws["H12"]=datos.hojasObservacion
+
+    
+    buffer = BytesIO()
+    wb.save(buffer)
+    buffer.seek(0)
+
+    # Respuesta HTTP para descargar el archivo
+    response = HttpResponse(
+        buffer,
+        content_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+    )
+    response["Content-Disposition"] = f'attachment; filename=Inventario_Oficina_{datos.user}.xlsx'
+
     return response
