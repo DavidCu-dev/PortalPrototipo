@@ -12,7 +12,28 @@
                 {% endfor %}
             {% endif %}
 
-            {{form}}
+            <form action="{% url 'inventOfi' %}" method="post" id="formIO">
+                {% csrf_token %}
+                <h4>Inventario de oficina</h4>
+                {{form}}
+            </form>
+            <div class="d-grid gap-4 mt-4">
+                <div class="row text-center">
+                    <div class="col-12 col-md-6 ">
+                        <button type="submit" class="btn btn-primary w-100 botongral" form="formIO" >
+                            Guardar Datos
+                        </button>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <form action="{% url 'borrarRVT' %}" method="post" >
+                            {% csrf_token %}
+                            <button class="btn btn-primary w-100 botongral" >
+                                Borrar registro
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
