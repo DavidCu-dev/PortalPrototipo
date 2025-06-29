@@ -39,10 +39,11 @@ urlpatterns = [
     path('inventario_oficina/', views.suplementosOficina, name='inventOfi'),
 
     # borrar registros
-    path('declaratoria_propiedad/delete', views.borrarDP, name='borrarDP'),
-    path('declaratoria_cumplimiento_ambiental/delete', views.borrarDCA, name='borrarDCA'),
-    path('carta_notificacion/delete', views.borrarCN, name='borrarCN'),
-    path('reporte_visita_tecnica/delete', views.borrarRVT, name='borrarRVT'),
+    path('declaratoria_propiedad/delete/', views.borrarDP, name='borrarDP'),
+    path('declaratoria_cumplimiento_ambiental/delete/', views.borrarDCA, name='borrarDCA'),
+    path('carta_notificacion/delete/', views.borrarCN, name='borrarCN'),
+    path('reporte_visita_tecnica/delete/', views.borrarRVT, name='borrarRVT'),
+    path('inventario_oficina/delete/', views.borrarInvOf, name='borrarInvOf'),
 
     # generaciondoc
     path('declaratoria_propiedad/download/', views.wordDeclaratoriaPropiedad, name='generarDeclaratoria'),

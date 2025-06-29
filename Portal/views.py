@@ -358,7 +358,12 @@ def borrarRVT(request):
         messages.success(request, 'Datos eliminados')
         return redirect('home')
     
-
+def borrarInvOf(request):
+    borrar = inventarioOficina.objects.filter(user=request.user)
+    if request.method == 'POST':
+        borrar.delete()
+        messages.success(request, 'Datos eliminados')
+        return redirect('home')
 
 # generar documentos
 
