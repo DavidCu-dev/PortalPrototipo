@@ -3,7 +3,7 @@
 
 <div class="container-fluid mb-4" >
     <div class="row justify-content-center">
-        <div class="documentosGenerales-card col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8 ">
+        <div class="documentosGenerales-card col-12  ">
             {% if messages %}
                 {% for message in messages %}
                     <div class="alert alert-danger" role="alert">
@@ -14,17 +14,123 @@
 
             <form action="{% url 'inventOfi' %}" method="post" id="formIO">
                 {% csrf_token %}
-                <h4>Inventario de oficina</h4>
-                {{form}}
+                <h4 class="text-center">Inventario de oficina</h4>
+                <div class="table-responsive">
+                    <table class="table  text-center align-middle table-bordered table-warning table-striped">
+                    <thead>
+                        <tr>
+                        <th scope="col">No.</th>
+                        <th scope="col">Articulo</th>
+                        <th scope="col">Cantidad</th>
+                        <th scope="col">Modelo</th>
+                        <th scope="col">Condicion</th>
+                        <th scope="col">Ubicacion</th>
+                        <th scope="col">Observaciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Escritorio</td>
+                            <td>{{form.escriCant}}</td>
+                            <td>{{form.escriModelo}}</td>
+                            <td>{{form.escriCondicion}}</td>
+                            <td>{{form.escriUbi}}</td>
+                            <td>{{form.escriObservaciones}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>Silla ejecutiva</td>
+                            <td>{{form.sillaCant}}</td>
+                            <td>{{form.sillaModelo}}</td>
+                            <td>{{form.sillaCondicion}}</td>
+                            <td>{{form.sillaUbi}}</td>
+                            <td>{{form.sillaObservacion}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>Laptop</td>
+                            <td>{{form.LapCant}}</td>
+                            <td>{{form.LapModelo}}</td>
+                            <td>{{form.LapCondicion}}</td>
+                            <td>{{form.LapUbi}}</td>
+                            <td>{{form.LapObservacion}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">4</th>
+                            <td>Proyector</td>
+                            <td>{{form.proyecCant}}</td>
+                            <td>{{form.proyecModelo}}</td>
+                            <td>{{form.proyecCondicion}}</td>
+                            <td>{{form.proyecUbi}}</td>
+                            <td>{{form.proyecObservacion}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">5</th>
+                            <td>Impresora</td>
+                            <td>{{form.impreCant}}</td>
+                            <td>{{form.impreModelo}}</td>
+                            <td>{{form.impreCondicion}}</td>
+                            <td>{{form.impreUbi}}</td>
+                            <td>{{form.impreObservacion}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">6</th>
+                            <td>Garrafones de agua</td>
+                            <td>{{form.aguaCant}}</td>
+                            <td>{{form.aguaModelo}}</td>
+                            <td>{{form.aguaCondicion}}</td>
+                            <td>{{form.aguaUbi}}</td>
+                            <td>{{form.aguaObservacion}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">7</th>
+                            <td>Escobas</td>
+                            <td>{{form.escobCant}}</td>
+                            <td>{{form.escobModelo}}</td>
+                            <td>{{form.escobCondicion}}</td>
+                            <td>{{form.escobUbi}}</td>
+                            <td>{{form.escobObservacion}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">8</th>
+                            <td>Extintores</td>
+                            <td>{{form.extintCant}}</td>
+                            <td>{{form.extintModelo}}</td>
+                            <td>{{form.extintCondicion}}</td>
+                            <td>{{form.extintUbi}}</td>
+                            <td>{{form.extintObservacion}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">9</th>
+                            <td>Jabon</td>
+                            <td>{{form.jabonCant}}</td>
+                            <td>{{form.jabonModelo}}</td>
+                            <td>{{form.jabonCondicion}}</td>
+                            <td>{{form.jabonUbi}}</td>
+                            <td>{{form.jabonObservacion}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">10</th>
+                            <td>Paquetes de hoja blanca</td>
+                            <td>{{form.hojasCant}}</td>
+                            <td>{{form.hojasModelo}}</td>
+                            <td>{{form.hojasCondicion}}</td>
+                            <td>{{form.hojasUbi}}</td>
+                            <td>{{form.hojasObservacion}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                </div>
             </form>
             <div class="d-grid gap-4 mt-4">
                 <div class="row text-center">
-                    <div class="col-12 col-md-6 ">
+                    <div class="col-12 col-md-6 mt-3">
                         <button type="submit" class="btn btn-primary w-100 botongral" form="formIO" >
                             Guardar Datos
                         </button>
                     </div>
-                    <div class="col-12 col-md-6">
+                    <div class="col-12 col-md-6 mt-3">
                         <form action="{% url 'borrarRVT' %}" method="post" >
                             {% csrf_token %}
                             <button class="btn btn-primary w-100 botongral" >

@@ -357,6 +357,8 @@ def borrarRVT(request):
         borrar.delete()
         messages.success(request, 'Datos eliminados')
         return redirect('home')
+    
+
 
 # generar documentos
 
