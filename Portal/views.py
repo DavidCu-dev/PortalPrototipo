@@ -41,6 +41,7 @@ def home(request):
     })
 
 
+
 def signup(request):
     if request.method == 'GET':
         return render(request, 'signup.html', {
@@ -64,7 +65,7 @@ def signup(request):
             'error': 'Las contraseñas no coinciden'
         })
 
-
+@login_required(login_url='iniciarSesion')
 def cerrarSesion(request):
     logout(request)
     return redirect('home')
@@ -89,6 +90,7 @@ def iniciarSesion(request):
             return redirect('home')
 
 
+@login_required(login_url='iniciarSesion')
 def datosUsuario(request):
     if request.method == 'GET':
         return render(request, 'datosUsuario.html', {
@@ -102,6 +104,7 @@ def datosUsuario(request):
         return redirect('home')
 
 
+@login_required(login_url='iniciarSesion')
 def actualizarDatosUsuario(request):
     if request.method == 'GET':
         actualizacion = get_object_or_404(datosUsuarioM, user=request.user)
@@ -124,6 +127,7 @@ def actualizarDatosUsuario(request):
 
 # formularios 
 
+@login_required(login_url='iniciarSesion')
 def declaratoriaPropiedad(request):
     # Buscar si ya existen datos para este usuario
     datos = declaratoriaPropiedadModel.objects.filter(user=request.user).first()
@@ -164,6 +168,8 @@ def declaratoriaPropiedad(request):
         'form': form
     })
 
+
+@login_required(login_url='iniciarSesion')
 def declaratoriaCumplimientoAmbiental(request):
     # Buscar si ya existen datos para este usuario
     datos = declaCumpliAmbModel.objects.filter(user=request.user).first()
@@ -205,6 +211,8 @@ def declaratoriaCumplimientoAmbiental(request):
         'form': form
     })
 
+
+@login_required(login_url='iniciarSesion')
 def cartaNotificacion(request):
     # Buscar si ya existen datos para este usuario
     datos = cartaNotificacionModel.objects.filter(user=request.user).first()
@@ -247,6 +255,8 @@ def cartaNotificacion(request):
         'datos': datos
     })
 
+
+@login_required(login_url='iniciarSesion')
 def reporteVisitaTecnica(request):
     # Buscar si ya existen datos para este usuario
     datos = reporteVisitaTecnicaModel.objects.filter(user=request.user).first()
@@ -288,6 +298,8 @@ def reporteVisitaTecnica(request):
         'datos': datos
     })
 
+
+@login_required(login_url='iniciarSesion')
 def suplementosOficina(request):
     # Buscar si ya existen datos para este usuario
     datos = inventarioOficina.objects.filter(user=request.user).first()
@@ -330,6 +342,7 @@ def suplementosOficina(request):
     })
 
 # borrar registros
+@login_required(login_url='iniciarSesion')
 def borrarDP(request):
     borrar = declaratoriaPropiedadModel.objects.filter(user=request.user)
     if request.method == 'POST':
@@ -337,6 +350,8 @@ def borrarDP(request):
         messages.success(request, 'Datos eliminados')
         return redirect('home')
 
+
+@login_required(login_url='iniciarSesion')
 def borrarDCA(request):
     borrar = declaCumpliAmbModel.objects.filter(user=request.user)
     if request.method == 'POST':
@@ -344,6 +359,8 @@ def borrarDCA(request):
         messages.success(request, 'Datos eliminados')
         return redirect('home')
 
+
+@login_required(login_url='iniciarSesion')
 def borrarCN(request):
     borrar = cartaNotificacionModel.objects.filter(user=request.user)
     if request.method == 'POST':
@@ -351,13 +368,17 @@ def borrarCN(request):
         messages.success(request, 'Datos eliminados')
         return redirect('home')
 
+
+@login_required(login_url='iniciarSesion')
 def borrarRVT(request):
     borrar = reporteVisitaTecnicaModel.objects.filter(user=request.user)
     if request.method == 'POST':
         borrar.delete()
         messages.success(request, 'Datos eliminados')
         return redirect('home')
-    
+
+
+@login_required(login_url='iniciarSesion')
 def borrarInvOf(request):
     borrar = inventarioOficina.objects.filter(user=request.user)
     if request.method == 'POST':
@@ -367,6 +388,7 @@ def borrarInvOf(request):
 
 # generar documentos
 
+@login_required(login_url='iniciarSesion')
 def wordDeclaratoriaPropiedad(request):
     user = request.user
     datos=get_object_or_404(declaratoriaPropiedadModel, user=user)
@@ -396,6 +418,8 @@ def wordDeclaratoriaPropiedad(request):
     response['Content-Disposition'] = f'attachment; filename="declaratoria_propiedad_{datos.user}.docx"'
     return response
 
+
+@login_required(login_url='iniciarSesion')
 def wordDeclaratoriaCumplimientoAmbiental(request):
     user = request.user
     datos=get_object_or_404(declaCumpliAmbModel, user=user)
@@ -429,6 +453,8 @@ def wordDeclaratoriaCumplimientoAmbiental(request):
     response['Content-Disposition'] = f'attachment; filename="declaratoria_cumplimiento_ambiental_{datos.user}.docx"'
     return response
 
+
+@login_required(login_url='iniciarSesion')
 def wordCartaNotificacion(request):
     user = request.user
     datos=get_object_or_404(cartaNotificacionModel, user=user)
@@ -465,6 +491,8 @@ def wordCartaNotificacion(request):
     response['Content-Disposition'] = f'attachment; filename="Carta-Notificacion-{datos.user}.docx"'
     return response
 
+
+@login_required(login_url='iniciarSesion')
 def wordReporteVisiTec(request):
     user = request.user
     datos=get_object_or_404(reporteVisitaTecnicaModel, user=user)
@@ -506,6 +534,8 @@ def wordReporteVisiTec(request):
     response['Content-Disposition'] = f'attachment; filename="Reporte visita tecnica {datos.user}.docx"'
     return response
 
+
+@login_required(login_url='iniciarSesion')
 def excelInventatio(request):
     datos = inventarioOficina.objects.filter(user=request.user).first()
     template_path = os.path.join(settings.BASE_DIR, 'Portal', 'templates', 'templatesDocs', 'Inventario Oficina.xlsx')
