@@ -131,6 +131,7 @@ def actualizarDatosUsuario(request):
 def declaratoriaPropiedad(request):
     # Buscar si ya existen datos para este usuario
     datos = declaratoriaPropiedadModel.objects.filter(user=request.user).first()
+    datosDPex = declaratoriaPropiedadModel.objects.filter(user=request.user).exists()
 
     # si se envia un formulario
     if request.method == 'POST':
@@ -165,7 +166,8 @@ def declaratoriaPropiedad(request):
             form = formDeclaratoriaPropiedad()
 
     return render(request, 'Documentos/declaratoriaPropiedad.html', {
-        'form': form
+        'form': form,
+        'datosDPex': datosDPex
     })
 
 
@@ -173,6 +175,7 @@ def declaratoriaPropiedad(request):
 def declaratoriaCumplimientoAmbiental(request):
     # Buscar si ya existen datos para este usuario
     datos = declaCumpliAmbModel.objects.filter(user=request.user).first()
+    datosCAex = declaCumpliAmbModel.objects.filter(user=request.user).exists()
 
     # si se envia un formulario
     if request.method == 'POST':
@@ -208,7 +211,8 @@ def declaratoriaCumplimientoAmbiental(request):
             form = formDeclaratoriaCumplimientoAmbiental()
 
     return render(request, 'Documentos/declaratoriaCA.html', {
-        'form': form
+        'form': form,
+        'datosCAex':datosCAex
     })
 
 
@@ -216,6 +220,7 @@ def declaratoriaCumplimientoAmbiental(request):
 def cartaNotificacion(request):
     # Buscar si ya existen datos para este usuario
     datos = cartaNotificacionModel.objects.filter(user=request.user).first()
+    datosCNex = cartaNotificacionModel.objects.filter(user=request.user).exists()
 
     # si se envia un formulario
     if request.method == 'POST':
@@ -252,7 +257,8 @@ def cartaNotificacion(request):
 
     return render(request, 'Documentos/cartaNotidicacion.html', {
         'form': form,
-        'datos': datos
+        'datos': datos,
+        'datosCNex' : datosCNex
     })
 
 
@@ -260,6 +266,7 @@ def cartaNotificacion(request):
 def reporteVisitaTecnica(request):
     # Buscar si ya existen datos para este usuario
     datos = reporteVisitaTecnicaModel.objects.filter(user=request.user).first()
+    datosRVTex = reporteVisitaTecnicaModel.objects.filter(user=request.user).exists()
 
     # si se envia un formulario
     if request.method == 'POST':
@@ -295,7 +302,8 @@ def reporteVisitaTecnica(request):
 
     return render(request, 'Documentos/reporteVisitaTec.html', {
         'form': form,
-        'datos': datos
+        'datos': datos,
+        'datosRVTex': datosRVTex
     })
 
 
@@ -303,6 +311,7 @@ def reporteVisitaTecnica(request):
 def suplementosOficina(request):
     # Buscar si ya existen datos para este usuario
     datos = inventarioOficina.objects.filter(user=request.user).first()
+    datosInventOf = inventarioOficina.objects.filter(user=request.user).exists()
 
     # si se envia un formulario
     if request.method == 'POST':
@@ -338,7 +347,8 @@ def suplementosOficina(request):
 
     return render(request, 'Documentos/inventOficina.html', {
         'form': form,
-        'datos': datos
+        'datos': datos,
+        'datosInventOf' : datosInventOf
     })
 
 # borrar registros

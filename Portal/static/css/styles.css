@@ -37,6 +37,7 @@ background: linear-gradient(90deg, rgba(97, 96, 88, 1) 0%, rgba(217, 198, 132, 1
 .botongral{
     background-color: #3a3d44; 
     border-color: #000000;
+    color: white;
 }
 
 .botongral:hover{
@@ -55,7 +56,7 @@ background: linear-gradient(90deg, rgba(97, 96, 88, 1) 0%, rgba(217, 198, 132, 1
 .botongral:disabled,
 .botongral[disabled] {
     background-color: #e0e0e0 !important;
-    color: #a0a0a0 !important;
+    color: #7e7d7d !important;
     border-color: #cccccc !important;
     cursor: not-allowed !important;
     opacity: 1 !important; /* Para que no se vea muy transparente */

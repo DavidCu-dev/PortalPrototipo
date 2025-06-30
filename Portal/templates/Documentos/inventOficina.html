@@ -15,6 +15,7 @@
             <form action="{% url 'inventOfi' %}" method="post" id="formIO">
                 {% csrf_token %}
                 <h4 class="text-center">Inventario de oficina</h4>
+                <br>
                 <div class="table-responsive">
                     <table class="table  text-center align-middle table-bordered table-warning table-striped">
                     <thead>
@@ -133,7 +134,7 @@
                     <div class="col-12 col-md-6 mt-3">
                         <form action="{% url 'borrarInvOf' %}" method="post" >
                             {% csrf_token %}
-                            <button class="btn btn-primary w-100 botongral" >
+                            <button class="btn w-100 botongral {% if not datosInventOf %}disabled{% endif %}" >
                                 Borrar registro
                             </button>
                         </form>
